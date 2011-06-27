@@ -8,8 +8,13 @@
 
 #import "viXcode4.h"
 
-
 @implementation viXcode4
+
++ (void) load {
+
+   NSLog(@"Hello, from viXcode4");
+
+}
 
 - (id)init
 {
