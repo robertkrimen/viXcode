@@ -1,6 +1,7 @@
 // NSTextView_VI.m
 
 #import "NSTextView_VI.h"
+#import "viXcode4.h"
 
 @implementation NSTextView (VI)
 
@@ -8,6 +9,7 @@
     NSLog(@"Derpity derp!");
     NSLog(@"%@", [[[NSApp mainWindow] firstResponder] class]);
     [[[NSApp mainWindow] firstResponder] moveToEndOfLine:sender];
+    [[viXcode4 singleton] do:self];
     //[[ViCommandPanelController sharedViCommandPanelController] handleInputAction:self];
     return;
 }

@@ -11,23 +11,33 @@
 @implementation viXcode4
 
 + (void) load {
-
    NSLog(@"Hello, from viXcode4");
-
 }
 
-- (id)init
-{
-    self = [super init];
++ (id)singleton {
+    static viXcode4 *instance = nil;
+    if (!instance) {
+        instance = [[viXcode4 alloc] init];
+    }
+    return instance;
+}
+
+- (id)init {
+    self = [super initWithWindowNibName:@"viXcode4_Window" owner:self];
     if (self) {
-        // Initialization code here.
+        [self setWindowFrameAutosaveName:@"viXcode4_Window"];
+		[[self window] setDelegate:self];
+		[[self window] setHasShadow:NO];
     }
     
     return self;
 }
 
-- (void)dealloc
-{
+- (IBAction)do:(id)sender{
+	[self showWindow:self];
+}
+
+- (void)dealloc {
     [super dealloc];
 }
 

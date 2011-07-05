@@ -8,9 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface viXcode4 : NSObject {
+@interface viXcode4 : NSWindowController <NSWindowDelegate> {
 @private
     
 }
+
++ (id)singleton;
+- (IBAction)do:(id)sender;
 
 @end
