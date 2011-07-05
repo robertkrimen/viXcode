@@ -9,7 +9,7 @@
     NSLog(@"Derpity derp!");
     NSLog(@"%@", [[[NSApp mainWindow] firstResponder] class]);
     [[[NSApp mainWindow] firstResponder] moveToEndOfLine:sender];
-    [[viXcode4 singleton] do:self];
+    [[viXcode4 singleton] __do__:self];
     //[[ViCommandPanelController sharedViCommandPanelController] handleInputAction:self];
     return;
 }

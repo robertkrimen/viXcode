@@ -7,17 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D46C5E5013C3D35D00A6961D /* viXcode4Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = D46C5E4F13C3D35D00A6961D /* viXcode4Window.xib */; };
 		D493F57D13B8E402006F9EF2 /* NSTextView_VI.m in Sources */ = {isa = PBXBuildFile; fileRef = D493F57B13B8E402006F9EF2 /* NSTextView_VI.m */; };
-		D4C1E17013C3BF8C000A4DD0 /* viXcode4_Window.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4C1E16F13C3BF8C000A4DD0 /* viXcode4_Window.xib */; };
 		D4F3BD8313B8DEA700754B73 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F3BD8213B8DEA700754B73 /* Cocoa.framework */; };
 		D4F3BD8D13B8DEA700754B73 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4F3BD8B13B8DEA700754B73 /* InfoPlist.strings */; };
 		D4F3BD9613B8DF0E00754B73 /* viXcode4.m in Sources */ = {isa = PBXBuildFile; fileRef = D4F3BD9513B8DF0E00754B73 /* viXcode4.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D46C5E4F13C3D35D00A6961D /* viXcode4Window.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = viXcode4Window.xib; sourceTree = "<group>"; };
 		D493F57B13B8E402006F9EF2 /* NSTextView_VI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSTextView_VI.m; sourceTree = "<group>"; };
 		D493F57C13B8E402006F9EF2 /* NSTextView_VI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTextView_VI.h; sourceTree = "<group>"; };
-		D4C1E16F13C3BF8C000A4DD0 /* viXcode4_Window.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = viXcode4_Window.xib; sourceTree = "<group>"; };
 		D4F3BD7F13B8DEA700754B73 /* viXcode4.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = viXcode4.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D4F3BD8213B8DEA700754B73 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D4F3BD8513B8DEA700754B73 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -88,7 +88,7 @@
 				D4F3BD8E13B8DEA700754B73 /* viXcode4-Prefix.pch */,
 				D4F3BD9413B8DF0E00754B73 /* viXcode4.h */,
 				D4F3BD9513B8DF0E00754B73 /* viXcode4.m */,
-				D4C1E16F13C3BF8C000A4DD0 /* viXcode4_Window.xib */,
+				D46C5E4F13C3D35D00A6961D /* viXcode4Window.xib */,
 			);
 			path = viXcode4;
 			sourceTree = "<group>";
@@ -141,7 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4F3BD8D13B8DEA700754B73 /* InfoPlist.strings in Resources */,
-				D4C1E17013C3BF8C000A4DD0 /* viXcode4_Window.xib in Resources */,
+				D46C5E5013C3D35D00A6961D /* viXcode4Window.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,6 +14,6 @@
 }
 
 + (id)singleton;
-- (IBAction)do:(id)sender;
+- (IBAction)__do__:(id)sender;
 
 @end
