@@ -7,12 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <ctype.h>
 
 @interface viXcode4 : NSWindowController <NSWindowDelegate> {
     IBOutlet NSTextField *textField;
 @private
 	id firstResponder;
-	NSString *inputSoFar;
+
 	/**
      *  The mode manages how to handle the character input
 	 *  0 -- Single character, normal, initial, default mode
@@ -23,6 +24,12 @@
 	 *  5 -- Some support for ex-style ":" commands (like ":w")
 	 */
 	int mode;
+	int locationShift;
+	int selectionSize;
+	NSString *inputSoFar;
+	BOOL saveInputSoFar;
+
+	NSDictionary* mode0_key2selector;
 }
 
 + (id)singleton;

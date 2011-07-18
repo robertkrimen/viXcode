@@ -28,6 +28,11 @@
         [self setWindowFrameAutosaveName:@"viXcode4Window"];
 		[[self window] setDelegate:self];
 		[[self window] setHasShadow:NO];
+
+        mode0_key2selector = [[NSDictionary alloc] initWithObjectsAndKeys:
+                              @"vi_j", @"j",
+                              @"vi_k", @"k",
+                              nil];
     }
     
     return self;
@@ -78,7 +83,6 @@
     NSLog(@"Enter!");
 }
 
-
 - (IBAction)keyPressed:(id)sender {
 	id targetWindow = [NSApp mainWindow];
     firstResponder = [targetWindow firstResponder];
@@ -92,7 +96,53 @@
 			mode = 0;
 			return;
 		}
+
+		locationShift = 0;
+		selectionSize = 1;
+		saveInputSoFar = NO;
+
+		switch (mode)
+		{
+			case 0: {
+				NSString* firstKey = [inputSoFar substringToIndex:1];
+				NSString* selectorName = [mode0_key2selector objectForKey:firstKey];
+				
+                NSLog(@"selectorName: %@", selectorName);
+				if (selectorName != nil)
+				{
+					SEL selector_ = sel_registerName([selectorName UTF8String]);
+					if (selector_ != nil)
+						[self performSelector:selector_];
+				}
+				
+				if (!saveInputSoFar) 
+					[textField setStringValue:@""];
+				
+				NSRange cRange = [firstResponder selectedRange];
+				
+				cRange.location += locationShift;
+				cRange.length = selectionSize;
+				
+				[firstResponder setSelectedRange:cRange];
+				[firstResponder scrollRangeToVisible:cRange];
+			}
+            break;
+        }
     }
+}
+
+- (void)showAction:(NSString*)msg {
+	[[self window] setTitle:msg];
+}
+
+- (void)vi_j {
+	[self showAction:@"(j) - Line downward"];
+	[firstResponder moveDown:self];
+}
+
+- (void)vi_k {
+	[self showAction:@"(k) - Line upward"];
+	[firstResponder moveUp:self];
 }
 
 - (void)dealloc {
