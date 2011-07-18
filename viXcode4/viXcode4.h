@@ -9,11 +9,26 @@
 #import <Cocoa/Cocoa.h>
 
 @interface viXcode4 : NSWindowController <NSWindowDelegate> {
+    IBOutlet NSTextField *textField;
 @private
-    
+	id firstResponder;
+	NSString *inputSoFar;
+	/**
+     *  The mode manages how to handle the character input
+	 *  0 -- Single character, normal, initial, default mode
+	 *  1 -- Multiple character input initiated by a "d"
+	 *  2 -- Searching mode (implementing using an integrated McCracken's incremental search (bless open source))
+	 *  3 -- A number was entered first... and we'll construct the number and then process what follows
+	 *  4 -- Single character replacement
+	 *  5 -- Some support for ex-style ":" commands (like ":w")
+	 */
+	int mode;
 }
 
 + (id)singleton;
-- (IBAction)__do__:(id)sender;
+
+- (IBAction)acceptInput:(id)sender;
+- (IBAction)keyPressed:(id)sender;
+- (IBAction)textFieldAction:(id)sender;
 
 @end

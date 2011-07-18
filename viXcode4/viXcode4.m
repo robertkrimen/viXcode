@@ -11,7 +11,7 @@
 @implementation viXcode4
 
 + (void) load {
-   NSLog(@"Hello, from viXcode4");
+   NSLog(@"(viXcode4)");
 }
 
 + (id)singleton {
@@ -19,7 +19,6 @@
     if (!instance) {
         instance = [[viXcode4 alloc] init];
     }
-    NSLog(@"Yield instance");
     return instance;
 }
 
@@ -65,9 +64,35 @@
 	// mode = 0;
 }
 
-- (IBAction)__do__:(id)sender{
-    NSLog(@"Yoink!");
+- (IBAction)acceptInput:(id)sender{
 	[self showWindowIfNeeded:sender];
+	[self keyPressed:sender];
+}
+
+- (void)controlTextDidChange:(NSNotification *)notification {
+    [self keyPressed:self];
+}
+
+// Enter was pressed in textField
+- (IBAction)textFieldAction:(id)sender {
+    NSLog(@"Enter!");
+}
+
+
+- (IBAction)keyPressed:(id)sender {
+	id targetWindow = [NSApp mainWindow];
+    firstResponder = [targetWindow firstResponder];
+
+	if ([firstResponder isKindOfClass:[NSTextView class]]) {
+		inputSoFar = [textField stringValue];
+		
+        NSLog(@"inputSoFar: %@", inputSoFar);
+
+		if ([inputSoFar length] < 1) {
+			mode = 0;
+			return;
+		}
+    }
 }
 
 - (void)dealloc {
