@@ -150,7 +150,7 @@
                 NSLog(@"selectorName: %@", selectorName);
 				if (selectorName != nil) {
 					SEL selector_ = sel_registerName([selectorName UTF8String]);
-					if (selector_) {
+                    if (selector_ && [self respondsToSelector:selector_]) {
 						[self performSelector:selector_];
                     }
 				}
@@ -159,9 +159,11 @@
 					[textField setStringValue:@""];
 				
 				NSRange cRange = [firstResponder selectedRange];
+                NSLog(@"%@", NSStringFromRange( cRange ));
 				
 				cRange.location += locationShift;
 				cRange.length = selectionSize;
+                NSLog(@"%@", NSStringFromRange( cRange ));
 				
 				[firstResponder setSelectedRange:cRange];
 				[firstResponder scrollRangeToVisible:cRange];
