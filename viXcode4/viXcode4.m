@@ -159,14 +159,11 @@
 					[textField setStringValue:@""];
 				
 				NSRange cRange = [firstResponder selectedRange];
-                NSLog(@"%@", NSStringFromRange( cRange ));
 				
 				cRange.location += locationShift;
 				cRange.length = selectionSize;
-                NSLog(@"%@", NSStringFromRange( cRange ));
 				
 				[firstResponder setSelectedRange:cRange];
-                [firstResponder setSelectionGranularity:NSSelectByCharacter];
 				[firstResponder scrollRangeToVisible:cRange];
 			}
             break;
@@ -197,7 +194,6 @@
 	[self showAction:@"(l) - Cursor right"];
 	[firstResponder moveRight:self];
 }
-
 
 - (void)dealloc {
     [super dealloc];
