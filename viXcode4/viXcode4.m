@@ -166,6 +166,7 @@
                 NSLog(@"%@", NSStringFromRange( cRange ));
 				
 				[firstResponder setSelectedRange:cRange];
+                [firstResponder setSelectionGranularity:NSSelectByCharacter];
 				[firstResponder scrollRangeToVisible:cRange];
 			}
             break;
@@ -178,14 +179,25 @@
 }
 
 - (void)vi_j {
-	[self showAction:@"(j) - Line downward"];
+	[self showAction:@"(j) - Cursor down"];
 	[firstResponder moveDown:self];
 }
 
 - (void)vi_k {
-	[self showAction:@"(k) - Line upward"];
+	[self showAction:@"(k) - Cursor up"];
 	[firstResponder moveUp:self];
 }
+
+- (void)vi_h {
+	[self showAction:@"(h) - Cursor left"];
+	[firstResponder moveLeft:self];
+}
+
+- (void)vi_l {
+	[self showAction:@"(l) - Cursor right"];
+	[firstResponder moveRight:self];
+}
+
 
 - (void)dealloc {
     [super dealloc];
