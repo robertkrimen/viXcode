@@ -72,8 +72,8 @@
                                 @"vi_a", @"a",
                                 @"vi_d", @"d",
                                 @"vi_p", @"p",
-                                @"vi_dollar",
-                                @"vi_underscore",
+                                @"vi_dollar", @"$",
+                                @"vi_underscore", @"_",
                                 nil];
     }
     
@@ -193,6 +193,12 @@
 - (void)vi_l {
 	[self showAction:@"(l) - Cursor right"];
 	[firstResponder moveRight:self];
+}
+
+- (void)vi_dollar {
+	[self showAction:@"($) - End of line"];
+	[firstResponder moveToEndOfLine:self];
+	locationShift = -1;
 }
 
 - (void)dealloc {
