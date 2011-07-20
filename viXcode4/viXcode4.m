@@ -217,6 +217,21 @@
 	selectionSize = 0;
 }
 
+// TODO Should we handle this as vi-compatible mode... or consider wrapped lines, wrapped?
+- (void)vi_A {
+	[self showAction:@"(A) - Insert at end of line (append)"];
+	[firstResponder moveToEndOfLine:self];
+    [[self window] orderOut:self];
+	selectionSize = 0;
+}
+
+- (void)vi_a {
+	[self showAction:@"(a) - Insert to the right of the cursor"];
+	[firstResponder moveRight:self];
+	[[self window] orderOut:self];
+	selectionSize = 0;
+}
+
 - (void)dealloc {
     [super dealloc];
 }
