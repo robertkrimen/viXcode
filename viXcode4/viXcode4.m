@@ -36,17 +36,17 @@
                                 @"vi_colon", @":",
                                 @"vi_questionmark", @"?",
                                 @"vi_slash", @"/",
-                                @"vi_underscore", @"_",
-                                @"vi_digit", @"0",
-                                @"vi_digit", @"1",
-                                @"vi_digit", @"2",
-                                @"vi_digit", @"3",
-                                @"vi_digit", @"4",
-                                @"vi_digit", @"5",
-                                @"vi_digit", @"6",
-                                @"vi_digit", @"7",
-                                @"vi_digit", @"8",
-                                @"vi_digit", @"9",
+                                @"vi_dollar", @"$",
+                                @"vi_0", @"0",
+                                @"vi_12345789", @"1",
+                                @"vi_12345789", @"2",
+                                @"vi_12345789", @"3",
+                                @"vi_12345789", @"4",
+                                @"vi_12345789", @"5",
+                                @"vi_12345789", @"6",
+                                @"vi_12345789", @"7",
+                                @"vi_12345789", @"8",
+                                @"vi_12345789", @"9",
                                 @"vi_A", @"A",
                                 @"vi_c", @"c",
                                 @"vi_e", @"e",
@@ -72,8 +72,6 @@
                                 @"vi_a", @"a",
                                 @"vi_d", @"d",
                                 @"vi_p", @"p",
-                                @"vi_dollar", @"$",
-                                @"vi_underscore", @"_",
                                 nil];
     }
     
@@ -196,9 +194,14 @@
 }
 
 - (void)vi_dollar {
-	[self showAction:@"($) - End of line"];
+	[self showAction:@"($) - Jump to end of line"];
 	[firstResponder moveToEndOfLine:self];
 	locationShift = -1;
+}
+
+- (void)vi_0 {
+	[self showAction:@"(0) - Jump to beginning of line"];
+	[firstResponder moveToBeginningOfLine:self];
 }
 
 - (void)dealloc {
