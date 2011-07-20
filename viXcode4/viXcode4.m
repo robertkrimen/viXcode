@@ -204,6 +204,19 @@
 	[firstResponder moveToBeginningOfLine:self];
 }
 
+- (void)vi_I {
+	[self showAction:@"(I) - Insert at beginning of line"];
+	[firstResponder moveToBeginningOfLine:self];
+	[[self window] orderOut:self];
+	selectionSize = 0;
+}
+
+- (void)vi_i {
+	[self showAction:@"(i) - Insert at cursor"];
+	[[self window] orderOut:self];
+	selectionSize = 0;
+}
+
 - (void)dealloc {
     [super dealloc];
 }
