@@ -186,6 +186,7 @@
 - (void)vi_h {
 	[self showAction:@"(h) - Cursor left"];
 	[firstResponder moveLeft:self];
+    locationShift = -1;
 }
 
 - (void)vi_l {
@@ -230,6 +231,43 @@
 	[firstResponder moveRight:self];
 	[[self window] orderOut:self];
 	selectionSize = 0;
+}
+
+- (void)vi_w {
+	[self showAction:@"(w) - Move one word to the right"];
+	
+	NSRange range = [firstResponder selectedRange];
+	NSTextStorage* textStorage = [firstResponder textStorage];
+	
+	
+	// At the end of the buffer, just return
+	if (range.location + 1 >= [textStorage length])
+		return;
+	
+	// It appears that the cocoa text system fails to move forward if the word is a 
+	// single character (like 'a')
+    // So, let's go and check if this is the case
+	if (isspace([[textStorage string] characterAtIndex:(range.location+1)]))
+	{
+		[firstResponder moveRight:self];
+		NSString* text = [textStorage string];
+		// Continue moving right while we are still a space (isspace)
+		int location = range.location+1;
+		while (isspace([text characterAtIndex:location]))
+		{
+			[firstResponder moveRight:self];
+			location++;
+			if (location >= [textStorage length])
+				return;
+		}
+	} 
+	else
+	{
+        // Cocoa just moves to the end of the current word...
+	    [firstResponder moveWordRight:self];
+		// ...but vi moves to the beginning of the next word
+		[firstResponder moveRight:self]; 
+	}
 }
 
 - (void)dealloc {
