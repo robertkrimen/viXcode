@@ -275,6 +275,12 @@
 	[firstResponder moveWordLeft:self];
 }
 
+- (void)vi_u {
+	[self showAction:@"(u) - Undo"];
+    //[firstResponder undo];
+    [[firstResponder undoManager] undo];
+}
+
 - (void)dealloc {
     [super dealloc];
 }
