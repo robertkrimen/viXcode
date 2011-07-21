@@ -66,6 +66,7 @@
                                 @"vi_b", @"b",
                                 @"vi_B", @"B",
                                 @"vi_u", @"u",
+                                @"vi_U", @"U",
                                 @"vi_o", @"o",
                                 @"vi_O", @"O",
                                 @"vi_i", @"i",
@@ -277,9 +278,14 @@
 
 - (void)vi_u {
 	[self showAction:@"(u) - Undo"];
-    //[firstResponder undo];
     [[firstResponder undoManager] undo];
 }
+
+- (void)vi_U {
+	[self showAction:@"(U) - Redo"];
+    [[firstResponder undoManager] redo];
+}
+
 
 - (void)dealloc {
     [super dealloc];
