@@ -291,6 +291,32 @@
 	[firstResponder deleteForward:self];
 }
 
+// FIXME These seem broken
+- (void)vi_leftBrace {
+	[self showAction:@"({) - Move to beginning of the previous paragraph"];
+	// We have to move left until we hit the paragraph before we can issue the move call
+	int location = [firstResponder selectedRange].location;
+	NSString* text = [[firstResponder textStorage] string];
+	do {
+		location--;
+		if (location < 0) { 
+			location = 0;
+			break;
+		}
+	} while (isspace([text characterAtIndex:location]));
+	
+	NSRange range = NSMakeRange(location,1);
+	[firstResponder setSelectedRange:range];
+	[firstResponder moveToBeginningOfParagraph:self];
+}
+
+- (void)vi_rightBrace {
+	[self showAction:@"(}) - Move to beginning of the next paragraph"];
+	[firstResponder moveRight:self];
+	[firstResponder moveToEndOfParagraph:self];
+	[firstResponder moveRight:self];
+}
+
 - (void)dealloc {
     [super dealloc];
 }
