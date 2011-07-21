@@ -270,6 +270,11 @@
 	}
 }
 
+- (void)vi_b {
+	[self showAction:@"(b) - Move one word to the left"];
+	[firstResponder moveWordLeft:self];
+}
+
 - (void)dealloc {
     [super dealloc];
 }
