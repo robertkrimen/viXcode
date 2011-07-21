@@ -286,6 +286,10 @@
     [[firstResponder undoManager] redo];
 }
 
+- (void)vi_x {
+	[self showAction:@"(x) - Delete character"];
+	[firstResponder deleteForward:self];
+}
 
 - (void)dealloc {
     [super dealloc];
