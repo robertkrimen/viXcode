@@ -317,6 +317,45 @@
 	[firstResponder moveRight:self];
 }
 
+// FIXME This may need some work
+- (void)vi_e {
+	[self showAction:@"(e) - Move to end of the word"];
+	
+	// There is no end of word motion
+	// We will move to the word on the right, and then roll backwards
+	NSRange range = [firstResponder selectedRange];
+	NSTextStorage* textStorage = [firstResponder textStorage];
+	
+	// Return if we're at the end of the buffer
+	if (range.location + 1 >= [textStorage length])
+		return;
+	
+	NSString* text = [textStorage string];
+	
+    // Cocoa just moves to the end of the current word...
+    [firstResponder moveWordRight:self];
+    // ...but vi moves to the beginning of the next word
+    [firstResponder moveRight:self]; 
+	
+	// Begin rolling back
+	// (Continue to move back until we find an an alpha or a number
+	range = [firstResponder selectedRange];
+	int location = range.location - 1;
+	do {
+		location--;
+    } while (!(isalpha([text characterAtIndex:location]) || isalpha([text characterAtIndex:location]) ));
+	locationShift = location - range.location;
+}
+
+
+- (void)vi_G {
+	[self showAction:@"(G) - Move to last line"];
+	[firstResponder moveToEndOfDocument:self];
+	[firstResponder moveToBeginningOfLine:self];
+}
+
+// TODO vi_g
+
 - (void)dealloc {
     [super dealloc];
 }
