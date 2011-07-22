@@ -157,13 +157,20 @@
 				if (!saveInputSoFar) 
 					[textField setStringValue:@""];
 				
-				NSRange cRange = [firstResponder selectedRange];
+	            NSTextStorage* textStorage = [firstResponder textStorage];
+				NSRange range = [firstResponder selectedRange];
 				
-				cRange.location += locationShift;
-				cRange.length = selectionSize;
-				
-				[firstResponder setSelectedRange:cRange];
-				[firstResponder scrollRangeToVisible:cRange];
+                // TODO Add try/catch here?
+				range.location += locationShift;
+                if ( range.location + selectionSize > [textStorage length] ) {
+				    range.length = 0;
+                }
+                else {
+				    range.length = selectionSize;
+                }
+
+				[firstResponder setSelectedRange:range];
+				[firstResponder scrollRangeToVisible:range];
 			}
             break;
         }
@@ -352,6 +359,7 @@
 	[self showAction:@"(G) - Move to last line"];
 	[firstResponder moveToEndOfDocument:self];
 	[firstResponder moveToBeginningOfLine:self];
+    selectionSize = 0;
 }
 
 // TODO vi_g
