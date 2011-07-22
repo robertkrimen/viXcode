@@ -162,7 +162,11 @@
 				
                 // TODO Add try/catch here?
 				range.location += locationShift;
-                if ( range.location + selectionSize > [textStorage length] ) {
+                if ( range.location > [textStorage length] ) {
+                    range.location = [textStorage length];
+                    range.length = 0;
+                }
+                else if ( range.location + selectionSize > [textStorage length] ) {
 				    range.length = 0;
                 }
                 else {
