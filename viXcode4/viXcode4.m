@@ -332,7 +332,7 @@
 - (void)vi_e {
 	[self showAction:@"(e) - Move to end of the word"];
 	
-	// There is no end of word motion
+	// There is no "move to end of word" motion
 	// We will move to the word on the right, and then roll backwards
 	NSRange range = [firstResponder selectedRange];
 	NSTextStorage* textStorage = [firstResponder textStorage];
@@ -354,7 +354,7 @@
 	int location = range.location - 1;
 	do {
 		location--;
-    } while (!(isalpha([text characterAtIndex:location]) || isalpha([text characterAtIndex:location]) ));
+    } while (isspace([text characterAtIndex:location]));
 	locationShift = location - range.location;
 }
 
