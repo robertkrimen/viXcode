@@ -1,6 +1,8 @@
 # TODO:
 * Add option to prevent cursor jumping back to the start of the line
 * Make 'e' stop at [, etc.
+* Implement 'g' (gg)
+* Implement 'J'
 ---
 
     "viXcode4 Escape"

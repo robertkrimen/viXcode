@@ -366,6 +366,9 @@
     selectionSize = 0;
 }
 
+// TODO vi_o
+// TODO vi_O
+
 // TODO vi_g
 
 - (void)dealloc {
