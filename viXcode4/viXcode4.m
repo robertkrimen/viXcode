@@ -36,6 +36,9 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
         [self setWindowFrameAutosaveName:@"viXcode4Window"];
 		[[self window] setDelegate:self];
 		[[self window] setHasShadow:NO];
+        [[self window] setBackgroundColor:[NSColor clearColor]];
+        [[self window] setOpaque:NO];
+        [[self window] setAlphaValue:0.25];
 
         mode0_key2selector = [[NSDictionary alloc] initWithObjectsAndKeys:
                                 @"vi_leftBrace", @"{",
