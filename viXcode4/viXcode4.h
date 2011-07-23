@@ -24,8 +24,8 @@
 	 *  5 -- Some support for ex-style ":" commands (like ":w")
 	 */
 	int mode;
-	int locationShift;
-	int selectionSize;
+	NSInteger locationShift;
+	NSUInteger selectionSize;
 	NSString *inputSoFar;
 	BOOL saveInputSoFar;
 

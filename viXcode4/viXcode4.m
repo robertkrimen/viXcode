@@ -8,6 +8,14 @@
 
 #import "viXcode4.h"
 
+NSUInteger viXcode4_decrement(NSUInteger value) {
+    NSUInteger result = value - 1;
+    if ( result > value ) {
+        result = 0;
+    }
+    return result;
+}
+
 @implementation viXcode4
 
 + (void) load {
@@ -264,7 +272,7 @@
 		[firstResponder moveRight:self];
 		NSString* text = [textStorage string];
 		// Continue moving right while we are still a space (isspace)
-		int location = range.location+1;
+		unsigned long location = range.location+1;
 		while (isspace([text characterAtIndex:location]))
 		{
 			[firstResponder moveRight:self];
@@ -306,17 +314,16 @@
 - (void)vi_leftBrace {
 	[self showAction:@"({) - Move to beginning of the previous paragraph"];
 	// We have to move left until we hit the paragraph before we can issue the move call
-	int location = [firstResponder selectedRange].location;
+	NSUInteger location = [firstResponder selectedRange].location;
 	NSString* text = [[firstResponder textStorage] string];
 	do {
-		location--;
-		if (location < 0) { 
-			location = 0;
+        location = viXcode4_decrement( location );
+		if (location == 0) { 
 			break;
 		}
 	} while (isspace([text characterAtIndex:location]));
 	
-	NSRange range = NSMakeRange(location,1);
+	NSRange range = NSMakeRange(location, 1);
 	[firstResponder setSelectedRange:range];
 	[firstResponder moveToBeginningOfParagraph:self];
 }
@@ -351,11 +358,12 @@
 	// Begin rolling back
 	// (Continue to move back until we find an an alpha or a number
 	range = [firstResponder selectedRange];
-	int location = range.location - 1;
+	NSUInteger location = viXcode4_decrement( range.location );
 	do {
-		location--;
+		location = viXcode4_decrement( location );
     } while (isspace([text characterAtIndex:location]));
 	locationShift = location - range.location;
+    // FIXME Possible overflow issue?
 }
 
 
