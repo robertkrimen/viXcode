@@ -379,8 +379,55 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     selectionSize = 0;
 }
 
-// TODO vi_o
-// TODO vi_O
+- (void)vi_o {
+	[self showAction:@"(o) - Insert at new line"];
+	[firstResponder moveToEndOfLine:self];
+	[firstResponder insertNewlineIgnoringFieldEditor:self];
+
+	// Wrapping causes some problem here.  We now have to check if there is an
+	// alpha character underneath the cursor (in the case of wrapping)
+	// If there is, then we need to insert a second newline character
+	NSRange range = [firstResponder selectedRange];
+	NSString* text = [[firstResponder textStorage] string];
+	if (!isspace([text characterAtIndex:range.location])) {
+		[firstResponder insertNewlineIgnoringFieldEditor:self];
+		[firstResponder moveUp:self];
+	}
+	[[self window] orderOut:self];
+    selectionSize = 0;
+}
+
+- (void)vi_O {
+    [self showAction:@"(O) - Insert a new line above"];
+    NSRange range0 = [firstResponder selectedRange];
+    [firstResponder moveUp:self];
+    NSRange range1 = [firstResponder selectedRange];
+    if (range0.location == range1.location)
+    {
+        [firstResponder moveToBeginningOfLine:self];
+        [firstResponder insertNewlineIgnoringFieldEditor:self];
+        [firstResponder moveUp:self];
+        [[self window] orderOut:self];
+        selectionSize = 0;	
+        return;
+    }
+
+	// Wrapping causes some problem here.  We now have to check if there is an
+	// alpha character underneath the cursor (in the case of wrapping)
+	// If there is, then we need to insert a second newline character
+	[firstResponder moveToEndOfLine:self];
+	[firstResponder insertNewlineIgnoringFieldEditor:self];
+	NSRange range = [firstResponder selectedRange];
+	NSString* text = [[firstResponder textStorage] string];
+	if (!isspace([text characterAtIndex:range.location])) {
+		[firstResponder insertNewlineIgnoringFieldEditor:self];
+		[firstResponder moveUp:self];
+	}
+	[[self window] orderOut:self];
+    selectionSize = 0;
+}
+//// TODO vi_o
+//// TODO vi_O
 
 // TODO vi_g
 
