@@ -38,7 +38,7 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 		[[self window] setHasShadow:NO];
         [[self window] setBackgroundColor:[NSColor clearColor]];
         [[self window] setOpaque:NO];
-        [[self window] setAlphaValue:0.25];
+        [[self window] setAlphaValue:0.75];
 
         mode0_key2selector = [[NSDictionary alloc] initWithObjectsAndKeys:
                                 @"vi_leftBrace", @"{",
@@ -103,17 +103,19 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 		
 		if ([view isKindOfClass:[NSScrollView class]]) {
 			textFieldRect = [view convertRect: [[(NSScrollView*)view contentView] frame] toView: nil];
-			textFieldBottomLeft = NSMakePoint(textFieldRect.origin.x,
-											  textFieldRect.origin.y);
+			textFieldBottomLeft = NSMakePoint(textFieldRect.origin.x, textFieldRect.origin.y);
+            textFieldBottomLeft.x += textFieldRect.size.width * 0.25;
 			searchWindowFrame.origin = [textFieldWindow convertBaseToScreen: textFieldBottomLeft];
         }
         else {
 			textFieldRect = [view convertRect: [view bounds] toView: nil];
-			searchWindowFrame.origin = [textFieldWindow convertBaseToScreen: textFieldRect.origin];
+            // textFieldBottomLeft might be misnamed here
+			textFieldBottomLeft = NSMakePoint(textFieldRect.origin.x, textFieldRect.origin.y);
+            textFieldBottomLeft.x += textFieldRect.size.width * 0.25;
+			searchWindowFrame.origin = [textFieldWindow convertBaseToScreen: textFieldBottomLeft];
 			searchWindowFrame.origin.y -= searchWindowFrame.size.height;
 		}
-		
-        searchWindowFrame.size.width = textFieldRect.size.width;
+        searchWindowFrame.size.width = textFieldRect.size.width * 0.5;
         
         [searchWindow setFrame:searchWindowFrame display:YES];
     }
