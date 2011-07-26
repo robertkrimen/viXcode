@@ -467,34 +467,42 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 
 - (void)handleMode1 {
 	
-	//NSInteger length = [input length];
+    NSInteger length = [input length];
+    
+    // First thing is a sanity check
+    // The input should be two or more characters long
+    if (length < 2) {
+        // Try to gracefully recover
+        [textField setStringValue:@""];
+        mode = 0;
+        return;
+    }
+    
+    // Second thing to do is to see if the last character of "input" is a number
+    // If it *is* a number, then we drop out and let the user continue typing
+    unichar lastCharacter = [input characterAtIndex:(length-1)];
+    if (isdigit(lastCharacter)) {
+        saveInput = YES;
+        return;
+    }
+    
+    NSString* firstKey = [input substringToIndex:1];
+    NSString* lastKey = [input substringFromIndex:(length-1)];
+    mode1_repeatCount = 1;
+    if (length > 2) {
+        NSRange range = NSMakeRange(1,length-2);
+        NSString* numberString = [input substringWithRange:range];
+        mode1_repeatCount = [numberString intValue];
+    }
+
+    if ( [firstKey isEqualToString:@"c"] ) {
+        [self selectorDispatch:mode1c_key2selector withKey:lastKey];
+    }
+    else if ( [firstKey isEqualToString:@"d"] ) {
+        [self selectorDispatch:mode1d_key2selector withKey:lastKey];
+    }
 	
-	//// First thing is a sanity check
-	//// The input should be two or more characters long
-	//if (length < 2) {
-	//    // Try to gracefully recover
-	//    [textField setStringValue:@""];
-	//    mode = 0;
-	//    return;
-	//}
-	
-	//// Second thing to do is to see if the last character of "input" is a number
-	//// If it *is* a number, then we drop out and let the user continue typing
-    //unichar lastCharacter = [input characterAtIndex:(length-1)];
-    //if (isdigit(lastCharacter)) {
-	//    saveInput = YES;
-	//    return;
-	//}
-	
-	//NSString* firstKey = [input substringToIndex:1];
-	//NSString* lastKey = [input substringFromIndex:(len-1)];
-	//mode1_repeat = 1;
-	//if (length > 2) {
-	//    NSRange range = NSMakeRange(1,length-2);
-	//    NSString* numberString = [input substringWithRange:range];
-	//    mode1_repeat = [numberString intValue];
-	//}
-	
+    mode = 0;
 	//// now we have to get the function to actually call!
 	//NSDictionary* secondDict = [mode1Dict objectForKey:firstKey];
 	
@@ -522,7 +530,6 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 	//        }
 	//    }
 	//}
-	//mode = 0;
 }
 
 // TODO vi_g

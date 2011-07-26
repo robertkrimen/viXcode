@@ -23,7 +23,8 @@
 	 *  4 -- Single character replacement
 	 *  5 -- Some support for ex-style ":" commands (like ":w")
 	 */
-	int mode;
+	NSInteger mode;
+	NSInteger mode1_repeatCount;
 	NSInteger locationShift;
 	NSUInteger selectionSize;
 	NSString *input;
