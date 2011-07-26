@@ -30,6 +30,8 @@
 	BOOL saveInput;
 
 	NSDictionary* mode0_key2selector;
+	NSDictionary* mode1d_key2selector;
+	NSDictionary* mode1c_key2selector;
 }
 
 + (id)singleton;
@@ -37,5 +39,6 @@
 - (IBAction)acceptInput:(id)sender;
 - (IBAction)keyPressed:(id)sender;
 - (IBAction)textFieldAction:(id)sender;
+- (void)selectorDispatch:(NSDictionary *)key2selector  withKey:(NSString *)key;
 
 @end

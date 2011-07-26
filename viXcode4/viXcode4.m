@@ -85,6 +85,20 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
                                 @"vi_d", @"d",
                                 @"vi_p", @"p",
                                 nil];
+
+        mode1d_key2selector = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                @"vi_dd", @"d",
+                                @"vi_dh", @"h",
+                                @"vi_dk", @"k",
+                                @"vi_dj", @"j",
+                                @"vi_dl", @"l",
+                                @"vi_dw", @"w",
+                                @"vi_ddollar", @"$",
+                                nil];
+
+        mode1c_key2selector = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                @"vi_cw", @"w",
+                                nil];
     }
     
     return self;
@@ -157,38 +171,16 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 		switch (mode) {
 			case 0: {
 				NSString* firstKey = [input substringToIndex:1];
-				NSString* selectorName = [mode0_key2selector objectForKey:firstKey];
-				
-                NSLog(@"selectorName: %@", selectorName);
-				if (selectorName != nil) {
-					SEL selector_ = sel_registerName([selectorName UTF8String]);
-                    if (selector_ && [self respondsToSelector:selector_]) {
-						[self performSelector:selector_];
-                    }
-				}
-				
-				if (!saveInput) 
-					[textField setStringValue:@""];
-				
-	            NSTextStorage* textStorage = [firstResponder textStorage];
-				NSRange range = [firstResponder selectedRange];
-				
-                // TODO Add try/catch here?
-				range.location += locationShift;
-                if ( range.location > [textStorage length] ) {
-                    range.location = [textStorage length];
-                    range.length = 0;
-                }
-                else if ( range.location + selectionSize > [textStorage length] ) {
-				    range.length = 0;
-                }
-                else {
-				    range.length = selectionSize;
-                }
-
-				[firstResponder setSelectedRange:range];
-				[firstResponder scrollRangeToVisible:range];
+                [self selectorDispatch:mode0_key2selector withKey:firstKey];
 			}
+            break;
+            // c (cw), d (dd), ...
+            case 1: {
+				[self handleMode1];
+				
+				if (!saveInput)
+					[textField setStringValue:@""];
+            }
             break;
         }
     }
@@ -433,10 +425,104 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 	saveInput = YES;
 }
 
-- (void)single_d {
+- (void)vi_d {
 	[self showAction:@"(d) - Delete ..."];
 	mode = 1;
 	saveInput = YES;
+}
+
+- (void)selectorDispatch:(NSDictionary *)key2selector  withKey:(NSString *)key {
+    NSString* selectorName = [key2selector objectForKey:key];
+    
+    NSLog(@"selectorName: %@", selectorName);
+    if (selectorName != nil) {
+        SEL selector_ = sel_registerName([selectorName UTF8String]);
+        if (selector_ && [self respondsToSelector:selector_]) {
+            [self performSelector:selector_];
+        }
+    }
+    
+    if (!saveInput) 
+        [textField setStringValue:@""];
+    
+    NSTextStorage* textStorage = [firstResponder textStorage];
+    NSRange range = [firstResponder selectedRange];
+    
+    // TODO Add try/catch here?
+    range.location += locationShift;
+    if ( range.location > [textStorage length] ) {
+        range.location = [textStorage length];
+        range.length = 0;
+    }
+    else if ( range.location + selectionSize > [textStorage length] ) {
+        range.length = 0;
+    }
+    else {
+        range.length = selectionSize;
+    }
+
+    [firstResponder setSelectedRange:range];
+    [firstResponder scrollRangeToVisible:range];
+}
+
+- (void)handleMode1 {
+	
+	//NSInteger length = [input length];
+	
+	//// First thing is a sanity check
+	//// The input should be two or more characters long
+	//if (length < 2) {
+	//    // Try to gracefully recover
+	//    [textField setStringValue:@""];
+	//    mode = 0;
+	//    return;
+	//}
+	
+	//// Second thing to do is to see if the last character of "input" is a number
+	//// If it *is* a number, then we drop out and let the user continue typing
+    //unichar lastCharacter = [input characterAtIndex:(length-1)];
+    //if (isdigit(lastCharacter)) {
+	//    saveInput = YES;
+	//    return;
+	//}
+	
+	//NSString* firstKey = [input substringToIndex:1];
+	//NSString* lastKey = [input substringFromIndex:(len-1)];
+	//mode1_repeat = 1;
+	//if (length > 2) {
+	//    NSRange range = NSMakeRange(1,length-2);
+	//    NSString* numberString = [input substringWithRange:range];
+	//    mode1_repeat = [numberString intValue];
+	//}
+	
+	//// now we have to get the function to actually call!
+	//NSDictionary* secondDict = [mode1Dict objectForKey:firstKey];
+	
+	//if (secondDict != nil)
+	//{
+	//    NSString* selNSString = [secondDict objectForKey:lastKey];
+	//    if (selNSString != nil)
+	//    {
+	//        SEL theSel = sel_getUid([selNSString UTF8String]);
+			
+	//        if (theSel != nil) 
+	//        {
+	//            [self performSelector:theSel];
+				
+	//            // only do these if we actually did some operation
+	//            NSRange cRange = [firstResponder selectedRange];
+				
+	//            cRange.location += locMod;
+	//            if (cRange.location < 0)
+	//                cRange.location = 0;
+	//            cRange.length = selLen;
+				
+	//            [firstResponder setSelectedRange:cRange];
+	//            [firstResponder scrollRangeToVisible:cRange];	
+	//        }
+	//    }
+	//}
+	//mode = 0;
 }
 
 // TODO vi_g
