@@ -138,6 +138,9 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 }
 
 - (IBAction)acceptInput:(id)sender{
+    // If you press <ESC> while the window is already active
+    // Clear showAction, clear input, etc?
+    [textField setStringValue:@""];
     [self showWindowIfNeeded:sender];
     [self keyPressed:sender];
 }
