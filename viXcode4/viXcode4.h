@@ -26,8 +26,8 @@
 	int mode;
 	NSInteger locationShift;
 	NSUInteger selectionSize;
-	NSString *inputSoFar;
-	BOOL saveInputSoFar;
+	NSString *input;
+	BOOL saveInput;
 
 	NSDictionary* mode0_key2selector;
 }

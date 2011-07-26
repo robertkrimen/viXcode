@@ -141,22 +141,22 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     firstResponder = [targetWindow firstResponder];
 
 	if ([firstResponder isKindOfClass:[NSTextView class]]) {
-		inputSoFar = [textField stringValue];
+		input = [textField stringValue];
 		
-        NSLog(@"inputSoFar: %@", inputSoFar);
+        NSLog(@"input: %@", input);
 
-		if ([inputSoFar length] < 1) {
+		if ([input length] < 1) {
 			mode = 0;
 			return;
 		}
 
 		locationShift = 0;
 		selectionSize = 1;
-		saveInputSoFar = NO;
+		saveInput = NO;
 
 		switch (mode) {
 			case 0: {
-				NSString* firstKey = [inputSoFar substringToIndex:1];
+				NSString* firstKey = [input substringToIndex:1];
 				NSString* selectorName = [mode0_key2selector objectForKey:firstKey];
 				
                 NSLog(@"selectorName: %@", selectorName);
@@ -167,7 +167,7 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
                     }
 				}
 				
-				if (!saveInputSoFar) 
+				if (!saveInput) 
 					[textField setStringValue:@""];
 				
 	            NSTextStorage* textStorage = [firstResponder textStorage];
@@ -425,6 +425,18 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 	}
 	[[self window] orderOut:self];
     selectionSize = 0;
+}
+
+- (void)vi_c {
+	[self showAction:@"(c) - Change ..."];
+	mode = 1;
+	saveInput = YES;
+}
+
+- (void)single_d {
+	[self showAction:@"(d) - Delete ..."];
+	mode = 1;
+	saveInput = YES;
 }
 
 // TODO vi_g
