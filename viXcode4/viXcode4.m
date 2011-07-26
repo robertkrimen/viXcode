@@ -124,8 +124,8 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 }
 
 - (IBAction)acceptInput:(id)sender{
-	[self showWindowIfNeeded:sender];
-	[self keyPressed:sender];
+    [self showWindowIfNeeded:sender];
+    [self keyPressed:sender];
 }
 
 - (void)controlTextDidChange:(NSNotification *)notification {
@@ -143,7 +143,7 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 	if ([firstResponder isKindOfClass:[NSTextView class]]) {
 		input = [textField stringValue];
 		
-        NSLog(@"input: %@", input);
+        NSLog(@"input: \"%@\" %d", input, [input length]);
 
 		if ([input length] < 1) {
 			mode = 0;
