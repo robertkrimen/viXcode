@@ -426,8 +426,6 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 	[[self window] orderOut:self];
     selectionSize = 0;
 }
-//// TODO vi_o
-//// TODO vi_O
 
 // TODO vi_g
 
