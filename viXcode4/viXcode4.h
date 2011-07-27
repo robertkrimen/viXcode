@@ -41,5 +41,6 @@
 - (IBAction)keyPressed:(id)sender;
 - (IBAction)textFieldAction:(id)sender;
 - (void)selectorDispatch:(NSDictionary *)key2selector  withKey:(NSString *)key;
+- (void)handleMode1;
 
 @end

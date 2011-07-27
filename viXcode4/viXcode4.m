@@ -160,7 +160,7 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 	if ([firstResponder isKindOfClass:[NSTextView class]]) {
 		input = [textField stringValue];
 		
-        NSLog(@"input: \"%@\" %d", input, [input length]);
+        NSLog(@"input: \"%@\" %lu", input, (unsigned long) [input length]);
 
 		if ([input length] < 1) {
 			mode = 0;
@@ -468,6 +468,12 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     [firstResponder scrollRangeToVisible:range];
 }
 
+- (void)vi_123456789 {
+	[self showAction:@"(123456789) - Build number..."];
+	//mode = 3;
+	//saveInput = YES;
+}
+
 - (void)handleMode1 {
 	
     NSInteger length = [input length];
@@ -498,6 +504,8 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
         mode1_repeatCount = [numberString intValue];
     }
 
+    NSLog(@"mode1_repeatCount = %ld", (long) mode1_repeatCount);
+
     if ( [firstKey isEqualToString:@"c"] ) {
         [self selectorDispatch:mode1c_key2selector withKey:lastKey];
     }
@@ -506,34 +514,41 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     }
 	
     mode = 0;
-	//// now we have to get the function to actually call!
-	//NSDictionary* secondDict = [mode1Dict objectForKey:firstKey];
-	
-	//if (secondDict != nil)
-	//{
-	//    NSString* selNSString = [secondDict objectForKey:lastKey];
-	//    if (selNSString != nil)
-	//    {
-	//        SEL theSel = sel_getUid([selNSString UTF8String]);
-			
-	//        if (theSel != nil) 
-	//        {
-	//            [self performSelector:theSel];
-				
-	//            // only do these if we actually did some operation
-	//            NSRange cRange = [firstResponder selectedRange];
-				
-	//            cRange.location += locMod;
-	//            if (cRange.location < 0)
-	//                cRange.location = 0;
-	//            cRange.length = selLen;
-				
-	//            [firstResponder setSelectedRange:cRange];
-	//            [firstResponder scrollRangeToVisible:cRange];	
-	//        }
-	//    }
-	//}
 }
+
+- (void)vi_dd {
+    [self showAction:[@"(dd) - Delete line " stringByAppendingString:[NSString stringWithFormat:@"(%i)", mode1_repeatCount]]];
+	
+	[firstResponder moveToBeginningOfLine:self];
+	// If the user tries to delete more lines than there are in the document
+    NSInteger lineCount = mode1_repeatCount;
+	[firstResponder setMark:self];
+    while ( lineCount > 0 ) {
+        NSRange range0 = [firstResponder selectedRange];
+        [firstResponder moveDown:self];
+        NSRange range1 = [firstResponder selectedRange];
+        if (range0.location == range1.location)
+            break;
+        lineCount--;
+    }
+	[firstResponder deleteToMark:self];
+}
+
+- (void)vi_cw {
+    [self showAction:[@"(cw) - Change word " stringByAppendingString:[NSString stringWithFormat:@"(%i)", mode1_repeatCount]]];
+    NSInteger wordCount = mode1_repeatCount;
+	[firstResponder setMark:self];
+    NSRange range = [firstResponder selectedRange];
+    range.length = 0;
+    [firstResponder setSelectedRange:range];
+    while ( wordCount > 0 ) {
+        [firstResponder deleteWordForward:self];
+        wordCount--;
+    }
+    [[self window] orderOut:self];
+    selectionSize = 0;
+}
+
 
 // TODO vi_g
 
