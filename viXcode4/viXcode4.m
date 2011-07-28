@@ -516,6 +516,21 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     mode = 0;
 }
 
+- (void)vi_cw {
+    [self showAction:[@"(cw) - Change word " stringByAppendingString:[NSString stringWithFormat:@"(%i)", mode1_repeatCount]]];
+    NSInteger wordCount = mode1_repeatCount;
+	[firstResponder setMark:self];
+    NSRange range = [firstResponder selectedRange];
+    range.length = 0;
+    [firstResponder setSelectedRange:range];
+    while ( wordCount > 0 ) {
+        [firstResponder deleteWordForward:self];
+        wordCount--;
+    }
+    [[self window] orderOut:self];
+    selectionSize = 0;
+}
+
 - (void)vi_dd {
     [self showAction:[@"(dd) - Delete line " stringByAppendingString:[NSString stringWithFormat:@"(%i)", mode1_repeatCount]]];
 	
@@ -532,23 +547,88 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
         lineCount--;
     }
 	[firstResponder deleteToMark:self];
+    // TODO selectionSize = 0?
 }
 
-- (void)vi_cw {
-    [self showAction:[@"(cw) - Change word " stringByAppendingString:[NSString stringWithFormat:@"(%i)", mode1_repeatCount]]];
-    NSInteger wordCount = mode1_repeatCount;
+// Different from "dd" in that it deletes from the current location
+- (void)vi_dj {
+    [self showAction:[@"(dj) - Delete line down " stringByAppendingString:[NSString stringWithFormat:@"(%i)", mode1_repeatCount]]];
+
+	// If the user tries to delete more lines than there are in the document
+    NSInteger lineCount = mode1_repeatCount;
 	[firstResponder setMark:self];
-    NSRange range = [firstResponder selectedRange];
-    range.length = 0;
-    [firstResponder setSelectedRange:range];
-    while ( wordCount > 0 ) {
-        [firstResponder deleteWordForward:self];
-        wordCount--;
+    while ( lineCount > 0 ) {
+        NSRange range0 = [firstResponder selectedRange];
+        [firstResponder moveDown:self];
+        NSRange range1 = [firstResponder selectedRange];
+        if (range0.location == range1.location)
+            break;
+        lineCount--;
     }
-    [[self window] orderOut:self];
-    selectionSize = 0;
+	[firstResponder deleteToMark:self];
+    // TODO selectionSize = 0?
 }
 
+- (void)vi_dk {
+    [self showAction:[@"(dk) - Delete line up " stringByAppendingString:[NSString stringWithFormat:@"(%i)", mode1_repeatCount]]];
+
+    NSInteger lineCount = mode1_repeatCount;
+
+	[firstResponder moveToEndOfLine:self];
+    //[firstResponder moveRight:self];
+    [firstResponder setMark:self];
+    while ( lineCount > 0 ) {
+        lineCount--;
+        [firstResponder moveUp:self];
+    }
+    [firstResponder moveToBeginningOfLine:self];
+    [firstResponder deleteToMark:self];
+}
+
+
+//- (void)mode1_dl {
+//    [self reflectAction:@"Vi: (dl) Delete multiple characters to the right"];
+	
+//    NSRange cR = [firstResponder selectedRange];
+//    cR.length = mode1_repeat;
+//    NSMutableString* mutstr = [[firstResponder textStorage] mutableString];
+//    [mutstr deleteCharactersInRange:cR];
+//    cR.length = 1;
+//    [firstResponder setSelectedRange:cR];
+//}
+
+//- (void)mode1_ddollar {
+//    [self reflectAction:@"Vi: (d$) Delete to end of current line"];
+	
+//    NSRange cR = [firstResponder selectedRange];
+//    cR.length = 0;
+//    [firstResponder setSelectedRange:cR];
+//    [firstResponder deleteToEndOfLine:self];
+//    cR.length = 1;
+//    cR.location = (cR.location == 0) ? 0 : cR.location - 1 ;
+//    [firstResponder setSelectedRange:cR];
+//}
+
+
+//[>* delete one or more words forward.  
+// A bug was fixed in 0.2 that made sure to erase the whole word.
+// A bug was fixed in 0.3.1 to only delete extra space after words, and not other characters.
+// */
+//- (void)mode1_dw {
+//    [self reflectAction:[@"Vi: (dw) Delete Word " stringByAppendingString:[NSString stringWithFormat:@"%i", mode1_repeat]]];
+//    int i;
+//    NSRange cRange = [firstResponder selectedRange];
+//    cRange.length = 0;
+//    [firstResponder setSelectedRange:cRange];
+//    for (i=0;i<mode1_repeat;i++)
+//        [firstResponder deleteWordForward:self];
+//    NSString* str = [[firstResponder textStorage] string];
+//    unichar c = [str characterAtIndex:cRange.location];
+//    if (isspace(c)) 
+//    {
+//        [firstResponder deleteForward:self];
+//    }
+//}
 
 // TODO vi_g
 
