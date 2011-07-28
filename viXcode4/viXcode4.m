@@ -575,7 +575,6 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     NSInteger lineCount = mode1_repeatCount;
 
 	[firstResponder moveToEndOfLine:self];
-    //[firstResponder moveRight:self];
     [firstResponder setMark:self];
     while ( lineCount > 0 ) {
         lineCount--;
@@ -585,6 +584,24 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     [firstResponder deleteToMark:self];
 }
 
+- (void)vi_dl {
+    [self showAction:[@"(dl) - Delete character right " stringByAppendingString:[NSString stringWithFormat:@"(%i)", mode1_repeatCount]]];
+
+    NSInteger characterCount = mode1_repeatCount;
+    [firstResponder setMark:self];
+    while ( characterCount > 0 ) {
+        [firstResponder moveRight:self];
+        characterCount--;
+    }
+    [firstResponder deleteToMark:self];
+		//[firstResponder deleteForward:self];
+    //NSRange range = [firstResponder selectedRange];
+    //range.length = mode1_repeatCount;
+    //NSMutableString* text = [[firstResponder textStorage] mutableString];
+    //[text deleteCharactersInRange:range];
+    //range.length = 1;
+    //[firstResponder setSelectedRange:range];
+}
 
 //- (void)mode1_dl {
 //    [self reflectAction:@"Vi: (dl) Delete multiple characters to the right"];
