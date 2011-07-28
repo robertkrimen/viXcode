@@ -584,24 +584,61 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     [firstResponder deleteToMark:self];
 }
 
+- (BOOL)characterAtLocationIsNewline {
+    NSRange range = [firstResponder selectedRange];
+    NSString* text = [[firstResponder textStorage] string];
+    unichar chr = [text characterAtIndex:range.location];
+    return chr == '\n';
+}
+
 - (void)vi_dl {
     [self showAction:[@"(dl) - Delete character right " stringByAppendingString:[NSString stringWithFormat:@"(%i)", mode1_repeatCount]]];
+
+    if ([self characterAtLocationIsNewline]) {
+        return;
+    }
 
     NSInteger characterCount = mode1_repeatCount;
     [firstResponder setMark:self];
     while ( characterCount > 0 ) {
         [firstResponder moveRight:self];
+        if ([self characterAtLocationIsNewline]) {
+            [firstResponder moveLeft:self];
+            break;
+        }
         characterCount--;
     }
     [firstResponder deleteToMark:self];
-		//[firstResponder deleteForward:self];
-    //NSRange range = [firstResponder selectedRange];
-    //range.length = mode1_repeatCount;
-    //NSMutableString* text = [[firstResponder textStorage] mutableString];
-    //[text deleteCharactersInRange:range];
-    //range.length = 1;
-    //[firstResponder setSelectedRange:range];
+    if ([self characterAtLocationIsNewline]) {
+        [firstResponder moveLeft:self];
+    }
 }
+
+- (void)vi_dh {
+    [self showAction:[@"(dh) - Delete character left " stringByAppendingString:[NSString stringWithFormat:@"(%i)", mode1_repeatCount]]];
+
+    if ([self characterAtLocationIsNewline]) {
+        return;
+    }
+
+    NSInteger characterCount = mode1_repeatCount;
+    [firstResponder moveLeft:self];
+    [firstResponder setMark:self];
+    while ( characterCount > 0 ) {
+        NSRange range = [firstResponder selectedRange];
+        if ( range.location > 0 ) {
+            NSString* text = [[firstResponder textStorage] string];
+            unichar chr = [text characterAtIndex:range.location - 1];
+            if ( chr == '\n' ) {
+                break;
+            }
+        }
+        [firstResponder moveLeft:self];
+        characterCount--;
+    }
+    [firstResponder deleteToMark:self];
+}
+
 
 //- (void)mode1_dl {
 //    [self reflectAction:@"Vi: (dl) Delete multiple characters to the right"];
