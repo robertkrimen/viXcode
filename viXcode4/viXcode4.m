@@ -587,6 +587,13 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     return chr == '\n';
 }
 
+- (BOOL)characterAtLocationIsSpace {
+    NSRange range = [firstResponder selectedRange];
+    NSString* text = [[firstResponder textStorage] string];
+    unichar chr = [text characterAtIndex:range.location];
+    return isspace(chr);
+}
+
 - (void)vi_dl {
     [self showAction:[@"(dl) - Delete character right " stringByAppendingString:[NSString stringWithFormat:@"(%i)", mode1_repeatCount]]];
 
@@ -680,26 +687,22 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     [self vi_dh];
 }
 
+- (void)vi_dw {
+    [self showAction:[@"(dw) - Delete word " stringByAppendingString:[NSString stringWithFormat:@"(%i)", mode1_repeatCount]]];
 
-//[>* delete one or more words forward.  
-// A bug was fixed in 0.2 that made sure to erase the whole word.
-// A bug was fixed in 0.3.1 to only delete extra space after words, and not other characters.
-// */
-//- (void)mode1_dw {
-//    [self reflectAction:[@"Vi: (dw) Delete Word " stringByAppendingString:[NSString stringWithFormat:@"%i", mode1_repeat]]];
-//    int i;
-//    NSRange cRange = [firstResponder selectedRange];
-//    cRange.length = 0;
-//    [firstResponder setSelectedRange:cRange];
-//    for (i=0;i<mode1_repeat;i++)
-//        [firstResponder deleteWordForward:self];
-//    NSString* str = [[firstResponder textStorage] string];
-//    unichar c = [str characterAtIndex:cRange.location];
-//    if (isspace(c)) 
-//    {
-//        [firstResponder deleteForward:self];
-//    }
-//}
+    // FIXME dw => dh when at the end of the line
+    NSRange range = [firstResponder selectedRange];
+    range.length = 0;
+    [firstResponder setSelectedRange:range];
+    NSInteger wordCount = mode1_repeatCount;
+    while ( wordCount > 0 ) {
+        [firstResponder deleteWordForward:self];
+        wordCount--;
+    }
+    if ( [self characterAtLocationIsSpace] ) {
+        [firstResponder deleteForward:self];
+    }
+}
 
 // TODO vi_g
 
