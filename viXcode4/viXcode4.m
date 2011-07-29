@@ -635,6 +635,39 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     [firstResponder deleteToMark:self];
 }
 
+- (BOOL)moveDownToDifferentLine {
+    NSRange range0 = [firstResponder selectedRange];
+    [firstResponder moveDown:self];
+    NSRange range1 = [firstResponder selectedRange];
+    return range0.location != range1.location;
+}
+
+- (void)vi_ddollar {
+    [self showAction:@"(d$) - Delete to end of line"];
+    
+    NSRange range = [firstResponder selectedRange];
+    range.length = 0;
+    [firstResponder setSelectedRange:range];
+    [firstResponder deleteToEndOfLine:self];
+
+    NSInteger lineCount = mode1_repeatCount - 1;
+    if ( lineCount && [self moveDownToDifferentLine] ) {
+        lineCount--;
+        [firstResponder moveToBeginningOfLine:self];
+        [firstResponder setMark:self];
+        while ( lineCount > 0 ) {
+            if (![self moveDownToDifferentLine]) break;
+            lineCount--;
+        }
+        [firstResponder moveToEndOfLine:self];
+        [firstResponder deleteToMark:self];
+    }
+    // TODO selectionSize = 0?
+    //range.length = 1;
+    //range.location = (range.location == 0) ? 0 : range.location - 1 ;
+    //[firstResponder setSelectedRange:range];
+}
+
 - (void)vi_x {
 	[self showAction:@"(x) - Delete character"];
     mode1_repeatCount = 1;
@@ -646,19 +679,6 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     mode1_repeatCount = 1;
     [self vi_dh];
 }
-
-
-//- (void)mode1_ddollar {
-//    [self reflectAction:@"Vi: (d$) Delete to end of current line"];
-	
-//    NSRange cR = [firstResponder selectedRange];
-//    cR.length = 0;
-//    [firstResponder setSelectedRange:cR];
-//    [firstResponder deleteToEndOfLine:self];
-//    cR.length = 1;
-//    cR.location = (cR.location == 0) ? 0 : cR.location - 1 ;
-//    [firstResponder setSelectedRange:cR];
-//}
 
 
 //[>* delete one or more words forward.  
