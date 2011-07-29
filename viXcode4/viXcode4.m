@@ -73,6 +73,7 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
                                 @"vi_k", @"k",
                                 @"vi_r", @"r",
                                 @"vi_x", @"x",
+                                @"vi_X", @"X",
                                 @"vi_w", @"w",
                                 @"vi_b", @"b",
                                 @"vi_B", @"B",
@@ -303,11 +304,6 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 - (void)vi_U {
 	[self showAction:@"(U) - Redo"];
     [[firstResponder undoManager] redo];
-}
-
-- (void)vi_x {
-	[self showAction:@"(x) - Delete character"];
-	[firstResponder deleteForward:self];
 }
 
 // FIXME These seem broken
@@ -639,17 +635,18 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     [firstResponder deleteToMark:self];
 }
 
+- (void)vi_x {
+	[self showAction:@"(x) - Delete character"];
+    mode1_repeatCount = 1;
+    [self vi_dl];
+}
 
-//- (void)mode1_dl {
-//    [self reflectAction:@"Vi: (dl) Delete multiple characters to the right"];
-	
-//    NSRange cR = [firstResponder selectedRange];
-//    cR.length = mode1_repeat;
-//    NSMutableString* mutstr = [[firstResponder textStorage] mutableString];
-//    [mutstr deleteCharactersInRange:cR];
-//    cR.length = 1;
-//    [firstResponder setSelectedRange:cR];
-//}
+- (void)vi_X {
+	[self showAction:@"(x) - Delete character"];
+    mode1_repeatCount = 1;
+    [self vi_dh];
+}
+
 
 //- (void)mode1_ddollar {
 //    [self reflectAction:@"Vi: (d$) Delete to end of current line"];
