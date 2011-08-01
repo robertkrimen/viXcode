@@ -691,6 +691,7 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     [self showAction:[@"(dw) - Delete word " stringByAppendingString:[NSString stringWithFormat:@"(%i)", mode1_repeatCount]]];
 
     // FIXME dw => dh when at the end of the line
+    // FIXME Better consideration of what is a word
     NSRange range = [firstResponder selectedRange];
     range.length = 0;
     [firstResponder setSelectedRange:range];
@@ -702,6 +703,26 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     if ( [self characterAtLocationIsSpace] ) {
         [firstResponder deleteForward:self];
     }
+}
+
+- (void)vi_caret {
+	[self showAction:@"(^) - First non-blank character"];
+	[firstResponder moveToBeginningOfLine:self];
+	// now, move to the right until we hit a character
+	NSUInteger location = [firstResponder selectedRange].location;
+	NSString* text = [[firstResponder textStorage] string];
+    NSUInteger textLength = [text length];
+    if (location < textLength) {
+        while (isspace([text characterAtIndex:location])) {
+            location++;
+            if (location >= textLength) {
+                location = textLength - 1;
+                break;
+            }
+        } 
+    }
+    NSRange range = NSMakeRange(location, location < textLength ? 1 : 0);
+    [firstResponder setSelectedRange:range];
 }
 
 // TODO vi_g
