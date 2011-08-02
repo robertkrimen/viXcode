@@ -100,6 +100,8 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
         mode1c_key2selector = [[NSDictionary alloc] initWithObjectsAndKeys:
                                 @"vi_cw", @"w",
                                 nil];
+
+		lastSearchTarget = [[NSMutableString stringWithCapacity:16] retain];
     }
     
     return self;
@@ -178,6 +180,7 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
                 [self selectorDispatch:mode0_key2selector withKey:firstKey];
 			}
             break;
+
             // c (cw), d (dd), ...
             case 1: {
 				[self handleMode1];
@@ -185,6 +188,15 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 				if (!saveInput)
 					[textField setStringValue:@""];
             }
+            break;
+
+            // Search
+			case 2: {
+				saveInput = YES;
+				[self handleSearch:[input substringFromIndex:1]];
+				if (!saveInput)
+					[textField setStringValue:@""];
+			}
             break;
         }
     }
@@ -723,6 +735,97 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     }
     NSRange range = NSMakeRange(location, location < textLength ? 1 : 0);
     [firstResponder setSelectedRange:range];
+}
+
+- (void)vi_slash {
+    [self showAction:@"(/) - Search"];
+    mode = 2;
+    saveInput = 1;
+    searchForward = YES;
+    searchInitial = YES;
+    searchRepeat = NO;
+    // We need to indicate if there was a past search to repeat
+    if (![lastSearchTarget isEqualToString:@""]) {
+        searchRepeat = YES;
+    } 
+    else { // Only unset wrapping if new, otherwise keep the value
+        searchWrap = NO;
+    }
+}
+
+- (void)handleSearch:(NSString *)searchTarget {
+    NSRange range;
+    NSString *title = nil;
+    NSString *string = [firstResponder string];
+    NSUInteger textLength = [[firstResponder textStorage] length];
+    
+    // Always turn this off here?
+    searchRepeat = NO;
+    
+    [lastSearchTarget setString:searchTarget];
+    int options = 0;
+    
+    if (!searchForward) {
+        options |= NSBackwardsSearch;
+    }
+    
+    if ([searchTarget rangeOfCharacterFromSet:[NSCharacterSet uppercaseLetterCharacterSet]].location == NSNotFound) {
+        options |= NSCaseInsensitiveSearch;
+    }
+    
+    NSRange selectedRange = [firstResponder selectedRange];
+    
+    // Guarantee that we're always searching to the extent of the range we want
+    if (searchForward) {
+        if (searchInitial) {
+            searchRange.location = [firstResponder selectedRange].location + 1;
+        }
+        searchRange.length = textLength - searchRange.location; // We're always searching to the end
+    }
+    else {
+        searchRange.location = 0;
+        if (searchInitial)
+            searchRange.length = selectedRange.location;
+    }
+    
+    if (searchWrap){
+        searchRange = NSMakeRange(0, textLength);
+    }
+    
+    
+    range = [string rangeOfString:searchTarget
+                          options:options
+                            range:searchRange];
+    
+    
+    if (range.location == NSNotFound) {
+        if (!searchInitial) NSBeep();
+        
+        title = [NSString stringWithFormat:NSLocalizedString(@"(/) - Not found%@", @""), 
+                 (searchWrap ? NSLocalizedString(@" (wrapped)", @"") : @"")];
+        
+        if (!searchForward) title = [title stringByAppendingString:NSLocalizedString(@" (backward)",@"")];
+        
+        searchWrap = YES;
+        [[self window] setTitle:title];
+        return;
+    }
+    else {
+        if (searchForward) {
+            searchRange = NSMakeRange( range.location, (textLength - range.location) );
+        }
+        title = [NSString stringWithFormat:NSLocalizedString(@"(/) - Found%@", @""),
+                 (searchWrap ? @" (wrapped)" : @"")];
+        
+        if (!searchForward) title = [title stringByAppendingString:NSLocalizedString(@" (backward)",@"")];
+        
+        searchInitial = NO;
+        searchWrap = NO;
+        [self showAction:title];
+    }
+    
+    [firstResponder setSelectedRange:range];
+    [firstResponder scrollRangeToVisible:range];
 }
 
 // TODO vi_g

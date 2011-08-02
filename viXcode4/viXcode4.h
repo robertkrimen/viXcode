@@ -24,9 +24,19 @@
 	 *  5 -- Some support for ex-style ":" commands (like ":w")
 	 */
 	NSInteger mode;
+
 	NSInteger mode1_repeatCount;
+
+    BOOL searchForward;
+    BOOL searchInitial;
+    BOOL searchRepeat;
+    BOOL searchWrap;
+	NSRange searchRange;
+	NSMutableString* lastSearchTarget;
+
 	NSInteger locationShift;
 	NSUInteger selectionSize;
+
 	NSString *input;
 	BOOL saveInput;
 
@@ -42,5 +52,6 @@
 - (IBAction)textFieldAction:(id)sender;
 - (void)selectorDispatch:(NSDictionary *)key2selector  withKey:(NSString *)key;
 - (void)handleMode1;
+- (void)handleSearch:(NSString *)searchTarget;
 
 @end
