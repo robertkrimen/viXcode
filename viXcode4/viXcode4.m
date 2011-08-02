@@ -154,6 +154,34 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 
 // Enter was pressed in textField
 - (IBAction)textFieldAction:(id)sender {
+
+	switch (mode) {
+		case 2:
+			if (searchRepeat) {
+				NSString* textFieldText;
+				if (searchForward)
+					textFieldText = [@"/" stringByAppendingString:lastSearchTarget];
+				else
+					textFieldText = [@"?" stringByAppendingString:lastSearchTarget];
+				
+				[textField setStringValue:textFieldText];
+				[self keyPressed:self];
+			}
+			// When vi ends a search, it does not enter input mode
+			mode = 0;
+			break;
+		//case 5:
+		//    [self handleMode5];
+		//    mode = 0;
+		//    break;
+		default:
+			mode = 0;
+			break;
+	}
+	
+	// Focus switches off to the desktop otherwise?
+	[[self window] makeFirstResponder: textField];
+	[textField setStringValue:@""];
 }
 
 - (IBAction)keyPressed:(id)sender {
@@ -826,6 +854,12 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     
     [firstResponder setSelectedRange:range];
     [firstResponder scrollRangeToVisible:range];
+}
+
+- (void)vi_n {
+	searchInitial = YES;
+	[self handleSearch:lastSearchTarget];
+	mode = 0;
 }
 
 // TODO vi_g
