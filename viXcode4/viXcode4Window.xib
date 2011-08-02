@@ -41,10 +41,10 @@
 				<string key="NSClassName">NSApplication</string>
 			</object>
 			<object class="NSWindowTemplate" id="1005">
-				<int key="NSWindowStyleMask">8223</int>
+				<int key="NSWindowStyleMask">8211</int>
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 240}, {271, 22}}</string>
-				<int key="NSWTFlags">1618481152</int>
+				<int key="NSWTFlags">-529002496</int>
 				<string key="NSWindowTitle">viXcode4</string>
 				<string key="NSWindowClass">NSPanel</string>
 				<nil key="NSViewClass"/>
