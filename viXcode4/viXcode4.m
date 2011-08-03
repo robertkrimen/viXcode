@@ -766,10 +766,26 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 }
 
 - (void)vi_slash {
-    [self showAction:@"(/) - Search"];
+    [self showAction:@"(/) - Search forward"];
     mode = 2;
     saveInput = 1;
     searchForward = YES;
+    searchInitial = YES;
+    searchRepeat = NO;
+    // We need to indicate if there was a past search to repeat
+    if (![lastSearchTarget isEqualToString:@""]) {
+        searchRepeat = YES;
+    } 
+    else { // Only unset wrapping if new, otherwise keep the value
+        searchWrap = NO;
+    }
+}
+
+- (void)vi_questionmark {
+    [self showAction:@"(/) - Search backward"];
+	mode = 2;
+    saveInput = 1;
+    searchForward = NO;
     searchInitial = YES;
     searchRepeat = NO;
     // We need to indicate if there was a past search to repeat
