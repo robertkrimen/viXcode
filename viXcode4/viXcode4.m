@@ -140,6 +140,11 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 	// mode = 0;
 }
 
+- (void)windowDidResignKey:(NSNotification*)notification {
+	[textField setStringValue:@""];
+	[[self window] close];
+}
+
 - (IBAction)acceptInput:(id)sender{
     // If you press <ESC> while the window is already active
     // Clear showAction, clear input, etc?
