@@ -862,6 +862,15 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 	mode = 0;
 }
 
+- (void)vi_N {
+    BOOL searchWasForward = searchForward;
+    searchForward = !searchForward;
+    searchInitial = YES;
+	[self handleSearch:lastSearchTarget];
+	mode = 0;
+    searchForward = searchWasForward;
+}
+
 // TODO vi_g
 
 - (void)dealloc {

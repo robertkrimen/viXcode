@@ -3,6 +3,8 @@
 * Make 'e' stop at [, etc.
 * Implement 'g' (gg)
 * Implement 'J'
+* Implement 's'
+* dw: If on whitespace, delete only up to next word
 
 ---
 
