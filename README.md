@@ -24,13 +24,16 @@ still exist (e.g. 'dw' skipping over whitespace to delete a word) and need to be
 
 Add the following somewhere in the IDETextKeyBindingSet.plist:
 
-	<key>viXcode4</key>
+	<key>viXcode</key>
 	<dict>
-		<key>viXcode4 Escape</key>
-		<string>viXcode4_escape:</string>
+		<key>Open viXcode</key>
+		<string>viXcode_Open:</string>
 	</dict>
 
-4. Launch Xcode and use "Preferences" > "Key Bindings" to associated viXcode4\_Escape with a key (or key combination)
+4. Launch Xcode and use "Preferences" > "Key Bindings" to associated "Open viXcode" with a key (or key combination)
+
+    Control-`
+    Command-;
 
 ---
 
