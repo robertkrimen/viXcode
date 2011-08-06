@@ -8,6 +8,6 @@
 #import <AppKit/AppKit.h>
 
 @interface NSTextView (VI)
-- (void)viXcode4_escape:(id)sender;
+- (void)viXcode_Open:(id)sender;
 @end
 

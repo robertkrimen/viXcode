@@ -1,14 +1,14 @@
 //
-//  viXcode4.m
-//  viXcode4
+//  viXcode.m
+//  viXcode
 //
 //  Created by Broken Rim on 6/27/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "viXcode4.h"
+#import "viXcode.h"
 
-NSUInteger viXcode4_decrement(NSUInteger value) {
+NSUInteger viXcode_decrement(NSUInteger value) {
     NSUInteger result = value - 1;
     if ( result > value ) {
         result = 0;
@@ -16,24 +16,24 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
     return result;
 }
 
-@implementation viXcode4
+@implementation viXcode
 
 + (void) load {
-   NSLog(@"(viXcode4)");
+   NSLog(@"(viXcode)");
 }
 
 + (id)singleton {
-    static viXcode4 *instance = nil;
+    static viXcode *instance = nil;
     if (!instance) {
-        instance = [[viXcode4 alloc] init];
+        instance = [[viXcode alloc] init];
     }
     return instance;
 }
 
 - (id)init {
-    self = [super initWithWindowNibName:@"viXcode4Window" owner:self];
+    self = [super initWithWindowNibName:@"viXcodeWindow" owner:self];
     if (self) {
-        [self setWindowFrameAutosaveName:@"viXcode4Window"];
+        [self setWindowFrameAutosaveName:@"viXcodeWindow"];
 		[[self window] setDelegate:self];
 		[[self window] setHasShadow:NO];
         [[self window] setBackgroundColor:[NSColor clearColor]];
@@ -358,7 +358,7 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 	NSUInteger location = [firstResponder selectedRange].location;
 	NSString* text = [[firstResponder textStorage] string];
 	do {
-        location = viXcode4_decrement( location );
+        location = viXcode_decrement( location );
 		if (location == 0) { 
 			break;
 		}
@@ -399,9 +399,9 @@ NSUInteger viXcode4_decrement(NSUInteger value) {
 	// Begin rolling back
 	// (Continue to move back until we find an an alpha or a number
 	range = [firstResponder selectedRange];
-	NSUInteger location = viXcode4_decrement( range.location );
+	NSUInteger location = viXcode_decrement( range.location );
 	do {
-		location = viXcode4_decrement( location );
+		location = viXcode_decrement( location );
     } while (isspace([text characterAtIndex:location]));
 	locationShift = location - range.location;
     // FIXME Possible overflow issue?

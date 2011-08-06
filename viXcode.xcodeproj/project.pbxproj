@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		D45D89CB13ECBCD000EB7A3D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45D89CA13ECBCD000EB7A3D /* Cocoa.framework */; };
 		D45D89D513ECBCD000EB7A3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D45D89D313ECBCD000EB7A3D /* InfoPlist.strings */; };
+		D4E66AA713ECBFF20045D206 /* NSTextView_VI.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E66AA613ECBFF20045D206 /* NSTextView_VI.m */; };
+		D4E66AAC13ECBFFE0045D206 /* viXcode.m in Sources */ = {isa = PBXBuildFile; fileRef = D4E66AAA13ECBFFE0045D206 /* viXcode.m */; };
+		D4E66AAD13ECBFFE0045D206 /* viXcodeWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E66AAB13ECBFFE0045D206 /* viXcodeWindow.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +23,11 @@
 		D45D89D213ECBCD000EB7A3D /* viXcode-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "viXcode-Info.plist"; sourceTree = "<group>"; };
 		D45D89D413ECBCD000EB7A3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D45D89D613ECBCD000EB7A3D /* viXcode-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "viXcode-Prefix.pch"; sourceTree = "<group>"; };
+		D4E66AA513ECBFF20045D206 /* NSTextView_VI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSTextView_VI.h; sourceTree = "<group>"; };
+		D4E66AA613ECBFF20045D206 /* NSTextView_VI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSTextView_VI.m; sourceTree = "<group>"; };
+		D4E66AA913ECBFFE0045D206 /* viXcode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = viXcode.h; sourceTree = "<group>"; };
+		D4E66AAA13ECBFFE0045D206 /* viXcode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = viXcode.m; sourceTree = "<group>"; };
+		D4E66AAB13ECBFFE0045D206 /* viXcodeWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = viXcodeWindow.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,19 +81,16 @@
 		D45D89D013ECBCD000EB7A3D /* viXcode */ = {
 			isa = PBXGroup;
 			children = (
-				D45D89D113ECBCD000EB7A3D /* Supporting Files */,
-			);
-			path = viXcode;
-			sourceTree = "<group>";
-		};
-		D45D89D113ECBCD000EB7A3D /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
+				D4E66AA913ECBFFE0045D206 /* viXcode.h */,
+				D4E66AAA13ECBFFE0045D206 /* viXcode.m */,
+				D4E66AAB13ECBFFE0045D206 /* viXcodeWindow.xib */,
+				D4E66AA513ECBFF20045D206 /* NSTextView_VI.h */,
+				D4E66AA613ECBFF20045D206 /* NSTextView_VI.m */,
 				D45D89D213ECBCD000EB7A3D /* viXcode-Info.plist */,
 				D45D89D313ECBCD000EB7A3D /* InfoPlist.strings */,
 				D45D89D613ECBCD000EB7A3D /* viXcode-Prefix.pch */,
 			);
-			name = "Supporting Files";
+			path = viXcode;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D45D89D513ECBCD000EB7A3D /* InfoPlist.strings in Resources */,
+				D4E66AAD13ECBFFE0045D206 /* viXcodeWindow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,6 +152,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4E66AA713ECBFF20045D206 /* NSTextView_VI.m in Sources */,
+				D4E66AAC13ECBFFE0045D206 /* viXcode.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -168,6 +176,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -186,6 +195,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -202,6 +212,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "viXcode/viXcode-Prefix.pch";
 				INFOPLIST_FILE = "viXcode/viXcode-Info.plist";
@@ -218,6 +229,7 @@
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_ENABLE_OBJC_GC = supported;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "viXcode/viXcode-Prefix.pch";
 				INFOPLIST_FILE = "viXcode/viXcode-Info.plist";

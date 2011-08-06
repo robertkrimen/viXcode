@@ -15,8 +15,8 @@ still exist (e.g. 'dw' skipping over whitespace to delete a word) and need to be
 
     git clone git://github.com/robertkrimen/viXcode.git
     ( cd viXcode && xcodebuild build )
-    cp -R build/Release/viXcode4.bundle $HOME/Library/Application Support/SIMBL/Plugins
-    # Symbolically linking (ln -s) "viXcode4.bundle" into "SIMBL/Plugins" will work too
+    cp -R build/Release/viXcode.bundle $HOME/Library/Application Support/SIMBL/Plugins
+    # Symbolically linking (ln -s) "viXcode.bundle" into "SIMBL/Plugins" will work too
 
 3. Edit Xcode4 key binding .plist to include the trigger key
 
