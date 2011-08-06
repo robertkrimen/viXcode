@@ -13,27 +13,27 @@ still exist (e.g. 'dw' skipping over whitespace to delete a word) and need to be
 
 2. Download and build viXcode
 
-    git clone git://github.com/robertkrimen/viXcode.git
-    ( cd viXcode && xcodebuild build )
-    cp -R build/Release/viXcode.bundle $HOME/Library/Application Support/SIMBL/Plugins
-    # Symbolically linking (ln -s) "viXcode.bundle" into "SIMBL/Plugins" will work too
+        git clone git://github.com/robertkrimen/viXcode.git
+        ( cd viXcode && xcodebuild build )
+        cp -R build/Release/viXcode.bundle $HOME/Library/Application Support/SIMBL/Plugins
+        # Symbolically linking (ln -s) "viXcode.bundle" into "SIMBL/Plugins" will work too
 
 3. Edit Xcode4 key binding .plist to include the trigger key
 
-    /Developer/Library/PrivateFrameworks/IDEKit.framework/Versions/A/Resources/IDETextKeyBindingSet.plist
+        /Developer/Library/PrivateFrameworks/IDEKit.framework/Versions/A/Resources/IDETextKeyBindingSet.plist
 
 Add the following somewhere in the IDETextKeyBindingSet.plist:
 
-	<key>viXcode</key>
-	<dict>
-		<key>Open viXcode</key>
-		<string>viXcode_Open:</string>
-	</dict>
+        <key>viXcode</key>
+        <dict>
+            <key>Open viXcode</key>
+            <string>viXcode_Open:</string>
+        </dict>
 
 4. Launch Xcode and use "Preferences" > "Key Bindings" to associated "Open viXcode" with a key (or key combination)
 
-    Control-`
-    Command-;
+        Control-`
+        Command-;
 
 ---
 
