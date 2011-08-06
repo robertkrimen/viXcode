@@ -1,0 +1,254 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D45D89CB13ECBCD000EB7A3D /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45D89CA13ECBCD000EB7A3D /* Cocoa.framework */; };
+		D45D89D513ECBCD000EB7A3D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D45D89D313ECBCD000EB7A3D /* InfoPlist.strings */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D45D89C713ECBCD000EB7A3D /* viXcode.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = viXcode.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		D45D89CA13ECBCD000EB7A3D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		D45D89CD13ECBCD000EB7A3D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		D45D89CE13ECBCD000EB7A3D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D45D89CF13ECBCD000EB7A3D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D45D89D213ECBCD000EB7A3D /* viXcode-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "viXcode-Info.plist"; sourceTree = "<group>"; };
+		D45D89D413ECBCD000EB7A3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D45D89D613ECBCD000EB7A3D /* viXcode-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "viXcode-Prefix.pch"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D45D89C413ECBCD000EB7A3D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D45D89CB13ECBCD000EB7A3D /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D45D89BC13ECBCD000EB7A3D = {
+			isa = PBXGroup;
+			children = (
+				D45D89D013ECBCD000EB7A3D /* viXcode */,
+				D45D89C913ECBCD000EB7A3D /* Frameworks */,
+				D45D89C813ECBCD000EB7A3D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D45D89C813ECBCD000EB7A3D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D45D89C713ECBCD000EB7A3D /* viXcode.bundle */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D45D89C913ECBCD000EB7A3D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D45D89CA13ECBCD000EB7A3D /* Cocoa.framework */,
+				D45D89CC13ECBCD000EB7A3D /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D45D89CC13ECBCD000EB7A3D /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D45D89CD13ECBCD000EB7A3D /* AppKit.framework */,
+				D45D89CE13ECBCD000EB7A3D /* CoreData.framework */,
+				D45D89CF13ECBCD000EB7A3D /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		D45D89D013ECBCD000EB7A3D /* viXcode */ = {
+			isa = PBXGroup;
+			children = (
+				D45D89D113ECBCD000EB7A3D /* Supporting Files */,
+			);
+			path = viXcode;
+			sourceTree = "<group>";
+		};
+		D45D89D113ECBCD000EB7A3D /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D45D89D213ECBCD000EB7A3D /* viXcode-Info.plist */,
+				D45D89D313ECBCD000EB7A3D /* InfoPlist.strings */,
+				D45D89D613ECBCD000EB7A3D /* viXcode-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D45D89C613ECBCD000EB7A3D /* viXcode */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D45D89D913ECBCD000EB7A3D /* Build configuration list for PBXNativeTarget "viXcode" */;
+			buildPhases = (
+				D45D89C313ECBCD000EB7A3D /* Sources */,
+				D45D89C413ECBCD000EB7A3D /* Frameworks */,
+				D45D89C513ECBCD000EB7A3D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = viXcode;
+			productName = viXcode;
+			productReference = D45D89C713ECBCD000EB7A3D /* viXcode.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D45D89BE13ECBCD000EB7A3D /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = D45D89C113ECBCD000EB7A3D /* Build configuration list for PBXProject "viXcode" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D45D89BC13ECBCD000EB7A3D;
+			productRefGroup = D45D89C813ECBCD000EB7A3D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D45D89C613ECBCD000EB7A3D /* viXcode */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D45D89C513ECBCD000EB7A3D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D45D89D513ECBCD000EB7A3D /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D45D89C313ECBCD000EB7A3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D45D89D313ECBCD000EB7A3D /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D45D89D413ECBCD000EB7A3D /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D45D89D713ECBCD000EB7A3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		D45D89D813ECBCD000EB7A3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		D45D89DA13ECBCD000EB7A3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "viXcode/viXcode-Prefix.pch";
+				INFOPLIST_FILE = "viXcode/viXcode-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		D45D89DB13ECBCD000EB7A3D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "viXcode/viXcode-Prefix.pch";
+				INFOPLIST_FILE = "viXcode/viXcode-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D45D89C113ECBCD000EB7A3D /* Build configuration list for PBXProject "viXcode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D45D89D713ECBCD000EB7A3D /* Debug */,
+				D45D89D813ECBCD000EB7A3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D45D89D913ECBCD000EB7A3D /* Build configuration list for PBXNativeTarget "viXcode" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D45D89DA13ECBCD000EB7A3D /* Debug */,
+				D45D89DB13ECBCD000EB7A3D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D45D89BE13ECBCD000EB7A3D /* Project object */;
+}
