@@ -49,15 +49,15 @@ NSUInteger viXcode_decrement(NSUInteger value) {
                                 @"vi_slash", @"/",
                                 @"vi_dollar", @"$",
                                 @"vi_0", @"0",
-                                @"vi_12345789", @"1",
-                                @"vi_12345789", @"2",
-                                @"vi_12345789", @"3",
-                                @"vi_12345789", @"4",
-                                @"vi_12345789", @"5",
-                                @"vi_12345789", @"6",
-                                @"vi_12345789", @"7",
-                                @"vi_12345789", @"8",
-                                @"vi_12345789", @"9",
+                                @"vi_123456789", @"1",
+                                @"vi_123456789", @"2",
+                                @"vi_123456789", @"3",
+                                @"vi_123456789", @"4",
+                                @"vi_123456789", @"5",
+                                @"vi_123456789", @"6",
+                                @"vi_123456789", @"7",
+                                @"vi_123456789", @"8",
+                                @"vi_123456789", @"9",
                                 @"vi_A", @"A",
                                 @"vi_c", @"c",
                                 @"vi_e", @"e",
@@ -231,6 +231,14 @@ NSUInteger viXcode_decrement(NSUInteger value) {
 					[textField setStringValue:@""];
 			}
             break;
+
+            // A number is being entered (vi_G)
+			case 3:
+			{
+				[self handleMode3];
+				if (!saveInput)
+					[textField setStringValue:@""];
+			}
         }
     }
 }
@@ -511,8 +519,8 @@ NSUInteger viXcode_decrement(NSUInteger value) {
 
 - (void)vi_123456789 {
 	[self showAction:@"(123456789) - Build number..."];
-	//mode = 3;
-	//saveInput = YES;
+    mode = 3;
+    saveInput = YES;
 }
 
 - (void)handleMode1 {
@@ -773,7 +781,7 @@ NSUInteger viXcode_decrement(NSUInteger value) {
 - (void)vi_slash {
     [self showAction:@"(/) - Search forward"];
     mode = 2;
-    saveInput = 1;
+    saveInput = YES;
     searchForward = YES;
     searchInitial = YES;
     searchRepeat = NO;
@@ -789,7 +797,7 @@ NSUInteger viXcode_decrement(NSUInteger value) {
 - (void)vi_questionmark {
     [self showAction:@"(/) - Search backward"];
 	mode = 2;
-    saveInput = 1;
+    saveInput = YES;
     searchForward = NO;
     searchInitial = YES;
     searchRepeat = NO;
@@ -891,6 +899,64 @@ NSUInteger viXcode_decrement(NSUInteger value) {
 	mode = 0;
     searchForward = searchWasForward;
 }
+
+- (NSUInteger)getIndexForLineNumber:(NSUInteger)number ofString: (NSString*)string {
+	NSUInteger numberOfLines, index, stringLength = [string length];
+	
+	if ( number == 1 )
+		return 0;
+	
+	for ( index = 0, numberOfLines = 1; (index < stringLength) && (numberOfLines < number); numberOfLines++ ) {	
+        NSLog(@"%lu", (unsigned long) index);
+		index = NSMaxRange([string lineRangeForRange:NSMakeRange(index, 0)]);
+	}
+	
+	return index;
+}
+
+- (void)handleMode3 {
+	
+    NSInteger length = [input length];
+    
+    // First thing is a sanity check
+    // The input should be two or more characters long
+    if (length < 2) {
+        // Try to gracefully recover
+        [textField setStringValue:@""];
+        mode = 0;
+        return;
+    }
+	
+    // Second thing to do is to see if the last character of "input" is a number
+    // If it *is* a number, then we drop out and let the user continue typing
+    unichar lastCharacter = [input characterAtIndex:(length-1)];
+    if (isdigit(lastCharacter)) {
+        saveInput = YES;
+        return;
+    }
+	
+    NSString* lastKey = [input substringFromIndex:(length-1)];
+	if ([lastKey isEqualToString:@"G"])
+	{
+        NSRange range = NSMakeRange(0, length - 1);
+        NSString *numberString = [input substringWithRange:range];
+		NSUInteger lineNumber = [numberString intValue];
+		[self showAction:[NSString stringWithFormat:@"(G) Moving to line %i", lineNumber]];
+		
+        NSString *string = [firstResponder string];
+		NSInteger index = [self getIndexForLineNumber:lineNumber ofString:string];
+
+        [firstResponder setSelectedRange:NSMakeRange( index, index < [string length] ? 1 : 0 )];
+	}
+	else {
+		NSBeep();
+    }
+	
+	saveInput = NO;
+	mode = 0;
+	
+}
+
 
 // TODO vi_g
 

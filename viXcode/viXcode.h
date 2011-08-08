@@ -53,5 +53,6 @@
 - (void)selectorDispatch:(NSDictionary *)key2selector  withKey:(NSString *)key;
 - (void)handleMode1;
 - (void)handleSearch:(NSString *)searchTarget;
+- (void)handleMode3;
 
 @end
