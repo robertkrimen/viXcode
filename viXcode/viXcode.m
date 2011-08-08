@@ -145,7 +145,7 @@ NSUInteger viXcode_decrement(NSUInteger value) {
 	[[self window] close];
 }
 
-- (IBAction)acceptInput:(id)sender{
+- (IBAction)open:(id)sender{
     // If you press <ESC> while the window is already active
     // Clear showAction, clear input, etc?
     [textField setStringValue:@""];
@@ -753,7 +753,7 @@ NSUInteger viXcode_decrement(NSUInteger value) {
 - (void)vi_caret {
 	[self showAction:@"(^) - First non-blank character"];
 	[firstResponder moveToBeginningOfLine:self];
-	// now, move to the right until we hit a character
+	// Move to the right until we hit a character
 	NSUInteger location = [firstResponder selectedRange].location;
 	NSString* text = [[firstResponder textStorage] string];
     NSUInteger textLength = [text length];

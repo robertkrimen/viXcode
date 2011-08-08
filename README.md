@@ -1,10 +1,10 @@
 # viXcode
 
-viXcode is a [SIMBL](http://www.culater.net/software/SIMBL/SIMBL.php) plugin for providing vi-style input in Xcode
+viXcode is a [SIMBL](http://www.culater.net/software/SIMBL/SIMBL.php) plugin for providing vi/vim-style input in Xcode
 
 It is a port of Jason Corso's Vi Input Manager (http://www.corsofamily.net/jcorso/vi/) to SIMBL
 
-Some adjustments were made during the port to make the input handling more vi-like. However, rough spots
+Some adjustments were made during the port to make the input handling more vi/vim-like. However, rough spots
 still exist (e.g. 'dw' skipping over whitespace to delete a word) and need to be ironed out
 
 ## INSTALL
@@ -18,7 +18,7 @@ still exist (e.g. 'dw' skipping over whitespace to delete a word) and need to be
         cp -R build/Release/viXcode.bundle $HOME/Library/Application Support/SIMBL/Plugins
         # Symbolically linking (ln -s) "viXcode.bundle" into "SIMBL/Plugins" will work too
 
-3. Edit Xcode4 key binding .plist to include the trigger key
+3. Edit the Xcode key binding .plist to include the trigger key
 
         /Developer/Library/PrivateFrameworks/IDEKit.framework/Versions/A/Resources/IDETextKeyBindingSet.plist
 
@@ -38,6 +38,7 @@ Add the following somewhere in the IDETextKeyBindingSet.plist:
 ---
 
 # TODO:
+* **Implement tests**
 * Add option to prevent cursor jumping back to the start of the line
 * Make 'e' stop at [, etc.
 * Implement 'g' (gg)

@@ -7,7 +7,7 @@
 
 - (void)viXcode_Open:(id)sender {
     NSLog(@"%@", [[[NSApp mainWindow] firstResponder] class]);
-    [[viXcode singleton] acceptInput:self];
+    [[viXcode singleton] open:self];
 }
 
 @end

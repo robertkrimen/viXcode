@@ -47,7 +47,7 @@
 
 + (id)singleton;
 
-- (IBAction)acceptInput:(id)sender;
+- (IBAction)open:(id)sender;
 - (IBAction)keyPressed:(id)sender;
 - (IBAction)textFieldAction:(id)sender;
 - (void)selectorDispatch:(NSDictionary *)key2selector  withKey:(NSString *)key;
