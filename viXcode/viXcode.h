@@ -54,5 +54,6 @@
 - (void)handleMode1;
 - (void)handleSearch:(NSString *)searchTarget;
 - (void)handleMode3;
+- (void)handleMode_r;
 
 @end

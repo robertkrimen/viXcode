@@ -233,12 +233,20 @@ NSUInteger viXcode_decrement(NSUInteger value) {
             break;
 
             // A number is being entered (vi_G)
-			case 3:
-			{
+			case 3: {
 				[self handleMode3];
 				if (!saveInput)
 					[textField setStringValue:@""];
 			}
+            break;
+
+            // Character replacement (vi_r)
+            case 4: {
+				[self handleMode_r];
+				if (!saveInput)
+					[textField setStringValue:@""];
+            }
+            break;
         }
     }
 }
@@ -957,6 +965,37 @@ NSUInteger viXcode_decrement(NSUInteger value) {
 	
 }
 
+- (void)vi_r {	
+	[self showAction:@"(r) - Character replacement"];
+
+	saveInput = YES;
+    mode = 4;
+}
+
+// AKA handleMode4
+- (void)handleMode_r {
+	
+    NSInteger length = [input length];
+	
+    NSLog(@"input: %@", input);
+    // First thing is a sanity check
+    // The input should be two or more characters long
+    if (length < 2) {
+        // Try to gracefully recover
+        [textField setStringValue:@""];
+        mode = 0;
+        return;
+    }
+	
+	NSRange range = [firstResponder selectedRange];
+	range.length = 1;
+	NSString* replaceString = [input substringFromIndex:(length - 1)];
+	[firstResponder replaceCharactersInRange:range withString:replaceString];
+	[firstResponder setSelectedRange:range];
+	
+	saveInput = NO;
+	mode = 0;
+}
 
 // TODO vi_g
 
