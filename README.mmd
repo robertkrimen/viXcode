@@ -10,13 +10,13 @@
 `a`         | Enter insert mode after the current point
 `A`         | Enter insert mode at the end of the current line
 `b,B`       | Move one word backward
-`c#*w`      | Change word (or multiple words)
-`d#*d`      | Delete one or more lines, e.g., dd, d2d, d34d
-`d#*h`      | Delete from current location * characters left, e.g., dh, d2h, d34h
-`d#*j`      | Delete from current location * lines down, e.g., dj, d2j, d34j
-`d#*k`      | Delete from current location * lines up, e.g., dk, d2k, d34k
-`d#*l`      | Delete from current location * characters right, e.g., dl, d2l, d34l
-`d#*w`      | Delete one or more words
+`cw,c#w`    | Change word (or multiple)
+`dd,d#d`    | Delete one or more lines, e.g., dd, d2d, d34d
+`dh,d#h`    | Delete character from current location * left, e.g., dh, d2h, d34h
+`dj,d#j`    | Delete character from current location * down, e.g., dj, d2j, d34j
+`dk,d#k`    | Delete character from current location * up, e.g., dk, d2k, d34k
+`dl,d#l`    | Delete character from current location * right, e.g., dl, d2l, d34l
+`dw,d#w`    | Delete a word (or multiple)
 `d$`        | Delete to end of line
 `e,E`       | Move to end of word
 `G,#G`      | Move to last line, or line number #
