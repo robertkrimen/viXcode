@@ -35,6 +35,162 @@ Add the following somewhere in the IDETextKeyBindingSet.plist:
         Control-`
         Command-;
 
+## USAGE
+
+
+<table>
+<col align="center" />
+<col align="left" />
+<thead>
+</thead>
+<tbody>
+<tr>
+	<td align="center"><code>{</code></td>
+	<td align="left">Move to beginning of previous paragraph</td>
+</tr>
+<tr>
+	<td align="center"><code>}</code></td>
+	<td align="left">Move to beginning of next paragraph</td>
+</tr>
+<tr>
+	<td align="center"><code>$</code></td>
+	<td align="left">Move to the end of the line</td>
+</tr>
+<tr>
+	<td align="center"><code>?</code></td>
+	<td align="left">Begin searching reverse, repeat last search in reverse</td>
+</tr>
+<tr>
+	<td align="center"><code>/</code></td>
+	<td align="left">Begin searching forward, repeat last search forward</td>
+</tr>
+<tr>
+	<td align="center"><code>_</code></td>
+	<td align="left"><s>Move to the beginning of the line</s></td>
+</tr>
+<tr>
+	<td align="center"><code>^</code></td>
+	<td align="left">Move to the first non-blank character of current line</td>
+</tr>
+<tr>
+	<td align="center"><code>0</code></td>
+	<td align="left">Move to the beginning of the line</td>
+</tr>
+<tr>
+	<td align="center"><code>a</code></td>
+	<td align="left">Enter insert mode after the current point</td>
+</tr>
+<tr>
+	<td align="center"><code>A</code></td>
+	<td align="left">Enter insert mode at the end of the current line</td>
+</tr>
+<tr>
+	<td align="center"><code>b,B</code></td>
+	<td align="left">Move one word backward</td>
+</tr>
+<tr>
+	<td align="center"><code>c#*w</code></td>
+	<td align="left">Change word (or multiple words)</td>
+</tr>
+<tr>
+	<td align="center"><code>d#*d</code></td>
+	<td align="left">Delete one or more lines, e.g., dd, d2d, d34d</td>
+</tr>
+<tr>
+	<td align="center"><code>d#*h</code></td>
+	<td align="left">Delete from current location * characters left, e.g., dh, d2h, d34h</td>
+</tr>
+<tr>
+	<td align="center"><code>d#*j</code></td>
+	<td align="left">Delete from current location * lines down, e.g., dj, d2j, d34j</td>
+</tr>
+<tr>
+	<td align="center"><code>d#*k</code></td>
+	<td align="left">Delete from current location * lines up, e.g., dk, d2k, d34k</td>
+</tr>
+<tr>
+	<td align="center"><code>d#*l</code></td>
+	<td align="left">Delete from current location * characters right, e.g., dl, d2l, d34l</td>
+</tr>
+<tr>
+	<td align="center"><code>d#*w</code></td>
+	<td align="left">Delete one or more words</td>
+</tr>
+<tr>
+	<td align="center"><code>d$</code></td>
+	<td align="left">Delete to end of line</td>
+</tr>
+<tr>
+	<td align="center"><code>e,E</code></td>
+	<td align="left">Move to end of word</td>
+</tr>
+<tr>
+	<td align="center"><code>G,#G</code></td>
+	<td align="left">Move to last line, or line number #</td>
+</tr>
+<tr>
+	<td align="center"><code>h</code></td>
+	<td align="left">Move left</td>
+</tr>
+<tr>
+	<td align="center"><code>i</code></td>
+	<td align="left">Enter insert mode</td>
+</tr>
+<tr>
+	<td align="center"><code>I</code></td>
+	<td align="left">Enter insert mode at the beginning of the current line</td>
+</tr>
+<tr>
+	<td align="center"><code>j</code></td>
+	<td align="left">Move down</td>
+</tr>
+<tr>
+	<td align="center"><code>k</code></td>
+	<td align="left">Move up</td>
+</tr>
+<tr>
+	<td align="center"><code>l</code></td>
+	<td align="left">Move right</td>
+</tr>
+<tr>
+	<td align="center"><code>n</code></td>
+	<td align="left">Repeat last search in the same direction</td>
+</tr>
+<tr>
+	<td align="center"><code>N</code></td>
+	<td align="left">Repeat last search in the opposite direction</td>
+</tr>
+<tr>
+	<td align="center"><code>o</code></td>
+	<td align="left">Enter insert mode on a new line</td>
+</tr>
+<tr>
+	<td align="center"><code>O</code></td>
+	<td align="left">Enter insert mode on a new line above</td>
+</tr>
+<tr>
+	<td align="center"><code>p</code></td>
+	<td align="left">Puts back whatever is in the "kill" buffer (deleted text...again, uses cocoa functions directly)</td>
+</tr>
+<tr>
+	<td align="center"><code>r\</code>*</td>
+	<td align="left">Replace the character under the cursor with typed character</td>
+</tr>
+<tr>
+	<td align="center"><code>u</code></td>
+	<td align="left">Undo last operation (this uses the cocoa undo manager directly)</td>
+</tr>
+<tr>
+	<td align="center"><code>w,W</code></td>
+	<td align="left">Move one word forward</td>
+</tr>
+<tr>
+	<td align="center"><code>x</code></td>
+	<td align="left">Delete character under the cursor</td>
+</tr>
+</tbody>
+</table>
+
 ---
 
 # TODO:
@@ -47,155 +203,3 @@ Add the following somewhere in the IDETextKeyBindingSet.plist:
 * dw: If on whitespace, delete only up to next word
 * http://www.corsofamily.net/jcorso/vi/#visupport
 
-<table>
-<col align="center" />
-<col align="left" />
-<thead>
-</thead>
-<tbody>
-<tr>
-	<td align="center">{</td>
-	<td align="left">Move to beginning of previous paragraph</td>
-</tr>
-<tr>
-	<td align="center">}</td>
-	<td align="left">Move to beginning of next paragraph</td>
-</tr>
-<tr>
-	<td align="center">$</td>
-	<td align="left">Move to the end of the line</td>
-</tr>
-<tr>
-	<td align="center">?</td>
-	<td align="left">Begin searching reverse, repeat last search in reverse</td>
-</tr>
-<tr>
-	<td align="center">/</td>
-	<td align="left">Begin searching forward, repeat last search forward</td>
-</tr>
-<tr>
-	<td align="center">_</td>
-	<td align="left">Move to the beginning of the line</td>
-</tr>
-<tr>
-	<td align="center">^</td>
-	<td align="left">Move to the first non-blank character of current line</td>
-</tr>
-<tr>
-	<td align="center">0</td>
-	<td align="left">Move to the beginning of the line</td>
-</tr>
-<tr>
-	<td align="center">a</td>
-	<td align="left">Enter insert mode after the current point</td>
-</tr>
-<tr>
-	<td align="center">A</td>
-	<td align="left">Enter insert mode at the end of the current line</td>
-</tr>
-<tr>
-	<td align="center">b,B</td>
-	<td align="left">Move one word backward</td>
-</tr>
-<tr>
-	<td align="center">c#*w</td>
-	<td align="left">Change word (or multiple words)</td>
-</tr>
-<tr>
-	<td align="center">d#*d</td>
-	<td align="left">Delete one or more lines, e.g., dd, d2d, d34d</td>
-</tr>
-<tr>
-	<td align="center">d#*h</td>
-	<td align="left">Delete from current location * characters left, e.g., dh, d2h, d34h</td>
-</tr>
-<tr>
-	<td align="center">d#*j</td>
-	<td align="left">Delete from current location * lines down, e.g., dj, d2j, d34j</td>
-</tr>
-<tr>
-	<td align="center">d#*k</td>
-	<td align="left">Delete from current location * lines up, e.g., dk, d2k, d34k</td>
-</tr>
-<tr>
-	<td align="center">d#*l</td>
-	<td align="left">Delete from current location * characters right, e.g., dl, d2l, d34l</td>
-</tr>
-<tr>
-	<td align="center">d#*w</td>
-	<td align="left">Delete one or more words</td>
-</tr>
-<tr>
-	<td align="center">d$</td>
-	<td align="left">Delete to end of line</td>
-</tr>
-<tr>
-	<td align="center">e,E</td>
-	<td align="left">Move to end of word</td>
-</tr>
-<tr>
-	<td align="center">G,#G</td>
-	<td align="left">Move to last line, or line number #</td>
-</tr>
-<tr>
-	<td align="center">h</td>
-	<td align="left">Move left</td>
-</tr>
-<tr>
-	<td align="center">i</td>
-	<td align="left">Enter insert mode</td>
-</tr>
-<tr>
-	<td align="center">I</td>
-	<td align="left">Enter insert mode at the beginning of the current line</td>
-</tr>
-<tr>
-	<td align="center">j</td>
-	<td align="left">Move down</td>
-</tr>
-<tr>
-	<td align="center">k</td>
-	<td align="left">Move up</td>
-</tr>
-<tr>
-	<td align="center">l</td>
-	<td align="left">Move right</td>
-</tr>
-<tr>
-	<td align="center">n</td>
-	<td align="left">Repeat last search in the same direction</td>
-</tr>
-<tr>
-	<td align="center">N</td>
-	<td align="left">Repeat last search in the opposite direction</td>
-</tr>
-<tr>
-	<td align="center">o</td>
-	<td align="left">Enter insert mode on a new line</td>
-</tr>
-<tr>
-	<td align="center">O</td>
-	<td align="left">Enter insert mode on a new line above</td>
-</tr>
-<tr>
-	<td align="center">p</td>
-	<td align="left">Puts back whatever is in the "kill" buffer (deleted text...again, uses cocoa functions directly)</td>
-</tr>
-<tr>
-	<td align="center">r*</td>
-	<td align="left">Replace the character under the cursor with typed character</td>
-</tr>
-<tr>
-	<td align="center">u</td>
-	<td align="left">Undo last operation (this uses the cocoa undo manager directly)</td>
-</tr>
-<tr>
-	<td align="center">w,W</td>
-	<td align="left">Move one word forward</td>
-</tr>
-<tr>
-	<td align="center">x</td>
-	<td align="left">Delete character under the cursor</td>
-</tr>
-</tbody>
-</table>
