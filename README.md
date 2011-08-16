@@ -37,7 +37,6 @@ Add the following somewhere in the IDETextKeyBindingSet.plist:
 
 ## USAGE
 
-
 <table>
 <col align="center" />
 <col align="left" />
@@ -89,32 +88,32 @@ Add the following somewhere in the IDETextKeyBindingSet.plist:
 	<td align="left">Move one word backward</td>
 </tr>
 <tr>
-	<td align="center"><code>c#*w</code></td>
-	<td align="left">Change word (or multiple words)</td>
+	<td align="center"><code>cw,c#w</code></td>
+	<td align="left">Change word (or multiple)</td>
 </tr>
 <tr>
-	<td align="center"><code>d#*d</code></td>
+	<td align="center"><code>dd,d#d</code></td>
 	<td align="left">Delete one or more lines, e.g., dd, d2d, d34d</td>
 </tr>
 <tr>
-	<td align="center"><code>d#*h</code></td>
-	<td align="left">Delete from current location * characters left, e.g., dh, d2h, d34h</td>
+	<td align="center"><code>dh,d#h</code></td>
+	<td align="left">Delete character from current location * left, e.g., dh, d2h, d34h</td>
 </tr>
 <tr>
-	<td align="center"><code>d#*j</code></td>
-	<td align="left">Delete from current location * lines down, e.g., dj, d2j, d34j</td>
+	<td align="center"><code>dj,d#j</code></td>
+	<td align="left">Delete character from current location * down, e.g., dj, d2j, d34j</td>
 </tr>
 <tr>
-	<td align="center"><code>d#*k</code></td>
-	<td align="left">Delete from current location * lines up, e.g., dk, d2k, d34k</td>
+	<td align="center"><code>dk,d#k</code></td>
+	<td align="left">Delete character from current location * up, e.g., dk, d2k, d34k</td>
 </tr>
 <tr>
-	<td align="center"><code>d#*l</code></td>
-	<td align="left">Delete from current location * characters right, e.g., dl, d2l, d34l</td>
+	<td align="center"><code>dl,d#l</code></td>
+	<td align="left">Delete character from current location * right, e.g., dl, d2l, d34l</td>
 </tr>
 <tr>
-	<td align="center"><code>d#*w</code></td>
-	<td align="left">Delete one or more words</td>
+	<td align="center"><code>dw,d#w</code></td>
+	<td align="left">Delete a word (or multiple)</td>
 </tr>
 <tr>
 	<td align="center"><code>d$</code></td>
@@ -170,7 +169,7 @@ Add the following somewhere in the IDETextKeyBindingSet.plist:
 </tr>
 <tr>
 	<td align="center"><code>p</code></td>
-	<td align="left">Puts back whatever is in the "kill" buffer (deleted text...again, uses cocoa functions directly)</td>
+	<td align="left"><s>Puts back whatever is in the "kill" buffer (via Coca directly)</s></td>
 </tr>
 <tr>
 	<td align="center"><code>r\</code>*</td>
@@ -178,7 +177,7 @@ Add the following somewhere in the IDETextKeyBindingSet.plist:
 </tr>
 <tr>
 	<td align="center"><code>u</code></td>
-	<td align="left">Undo last operation (this uses the cocoa undo manager directly)</td>
+	<td align="left">Undo last operation (this uses the Cocoa UndoManager directly)</td>
 </tr>
 <tr>
 	<td align="center"><code>w,W</code></td>
