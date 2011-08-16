@@ -75,6 +75,7 @@ NSUInteger viXcode_decrement(NSUInteger value) {
                                 @"vi_x", @"x",
                                 @"vi_X", @"X",
                                 @"vi_w", @"w",
+                                @"vi_w", @"W",
                                 @"vi_b", @"b",
                                 @"vi_B", @"B",
                                 @"vi_u", @"u",
