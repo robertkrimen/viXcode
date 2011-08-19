@@ -86,6 +86,7 @@ NSUInteger viXcode_decrement(NSUInteger value) {
                                 @"vi_a", @"a",
                                 @"vi_d", @"d",
                                 @"vi_p", @"p",
+                                @"vi_g", @"g",
                                 nil];
 
         mode1_key2selector = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -97,6 +98,7 @@ NSUInteger viXcode_decrement(NSUInteger value) {
                                 @"vi_dw", @"dw",
                                 @"vi_ddollar", @"d$",
                                 @"vi_cw", @"cw",
+                                @"vi_gg", @"gg",
                                 nil];
 
 		lastSearchTarget = [[NSMutableString stringWithCapacity:16] retain];
@@ -429,6 +431,14 @@ NSUInteger viXcode_decrement(NSUInteger value) {
     selectionSize = 0;
 }
 
+- (void)vi_gg {
+	[self showAction:@"(G) - Move to first line"];
+	[firstResponder moveToBeginningOfDocument:self];
+	[firstResponder moveToBeginningOfLine:self];
+    selectionSize = 0;
+}
+
+
 - (void)vi_o {
 	[self showAction:@"(o) - Insert at new line"];
 	[firstResponder moveToEndOfLine:self];
@@ -485,6 +495,12 @@ NSUInteger viXcode_decrement(NSUInteger value) {
 
 - (void)vi_d {
 	[self showAction:@"(d) - Delete ..."];
+	mode = 1;
+	saveInput = YES;
+}
+
+- (void)vi_g {
+	[self showAction:@"(g) - ..."];
 	mode = 1;
 	saveInput = YES;
 }
