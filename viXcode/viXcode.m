@@ -88,18 +88,15 @@ NSUInteger viXcode_decrement(NSUInteger value) {
                                 @"vi_p", @"p",
                                 nil];
 
-        mode1d_key2selector = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                @"vi_dd", @"d",
-                                @"vi_dh", @"h",
+        mode1_key2selector = [[NSDictionary alloc] initWithObjectsAndKeys:
+                                @"vi_dd", @"dd",
+                                @"vi_dh", @"hh",
                                 @"vi_dk", @"k",
-                                @"vi_dj", @"j",
-                                @"vi_dl", @"l",
-                                @"vi_dw", @"w",
-                                @"vi_ddollar", @"$",
-                                nil];
-
-        mode1c_key2selector = [[NSDictionary alloc] initWithObjectsAndKeys:
-                                @"vi_cw", @"w",
+                                @"vi_dj", @"dj",
+                                @"vi_dl", @"dl",
+                                @"vi_dw", @"dw",
+                                @"vi_ddollar", @"d$",
+                                @"vi_cw", @"cw",
                                 nil];
 
 		lastSearchTarget = [[NSMutableString stringWithCapacity:16] retain];
@@ -564,12 +561,7 @@ NSUInteger viXcode_decrement(NSUInteger value) {
 
     NSLog(@"mode1_repeatCount = %ld", (long) mode1_repeatCount);
 
-    if ( [firstKey isEqualToString:@"c"] ) {
-        [self selectorDispatch:mode1c_key2selector withKey:lastKey];
-    }
-    else if ( [firstKey isEqualToString:@"d"] ) {
-        [self selectorDispatch:mode1d_key2selector withKey:lastKey];
-    }
+    [self selectorDispatch:mode1_key2selector withKey:[firstKey stringByAppendingString:lastKey]];
 	
     mode = 0;
 }

@@ -41,8 +41,7 @@
 	BOOL saveInput;
 
 	NSDictionary* mode0_key2selector;
-	NSDictionary* mode1d_key2selector;
-	NSDictionary* mode1c_key2selector;
+	NSDictionary* mode1_key2selector;
 }
 
 + (id)singleton;
