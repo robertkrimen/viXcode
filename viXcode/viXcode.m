@@ -22,10 +22,10 @@ NSUInteger viXcode_decrement(NSUInteger value) {
    NSLog(@"(viXcode)");
 }
 
-+ (id)singleton {
++ (viXcode *)singleton {
     static viXcode *instance = nil;
     if (!instance) {
-        instance = [[viXcode alloc] init];
+        instance = [[[self class] alloc] init];
     }
     return instance;
 }

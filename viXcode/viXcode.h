@@ -44,7 +44,7 @@
 	NSDictionary* mode1_key2selector;
 }
 
-+ (id)singleton;
++ (viXcode *)singleton;
 
 - (IBAction)open:(id)sender;
 - (IBAction)keyPressed:(id)sender;
