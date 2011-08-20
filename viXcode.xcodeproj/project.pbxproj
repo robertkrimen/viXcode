@@ -24,11 +24,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D4156E9E140036E400873156 /* Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Test-Info.plist"; sourceTree = "<group>"; };
-		D4156EA0140036E400873156 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		D4156EA2140036E400873156 /* Test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Test-Prefix.pch"; sourceTree = "<group>"; };
-		D4156EA3140036E400873156 /* Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
-		D4156EA5140036E400873156 /* Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Test.m; sourceTree = "<group>"; };
 		D45D89C713ECBCD000EB7A3D /* viXcode.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = viXcode.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		D45D89CA13ECBCD000EB7A3D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		D45D89CD13ECBCD000EB7A3D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -70,32 +65,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D4156E9C140036E400873156 /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				D4156EA3140036E400873156 /* Test.h */,
-				D4156EA5140036E400873156 /* Test.m */,
-				D4156E9D140036E400873156 /* Supporting Files */,
-			);
-			path = Test;
-			sourceTree = "<group>";
-		};
-		D4156E9D140036E400873156 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				D4156E9E140036E400873156 /* Test-Info.plist */,
-				D4156E9F140036E400873156 /* InfoPlist.strings */,
-				D4156EA2140036E400873156 /* Test-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		D45D89BC13ECBCD000EB7A3D = {
 			isa = PBXGroup;
 			children = (
 				D45D89D013ECBCD000EB7A3D /* viXcode */,
 				D469693C13FF3FD300A634E4 /* viXcodeTest */,
-				D4156E9C140036E400873156 /* Test */,
 				D45D89C913ECBCD000EB7A3D /* Frameworks */,
 				D45D89C813ECBCD000EB7A3D /* Products */,
 			);
@@ -288,14 +262,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D4156E9F140036E400873156 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D4156EA0140036E400873156 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		D45D89D313ECBCD000EB7A3D /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
